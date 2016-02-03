@@ -22,8 +22,6 @@ public class ProxyClient extends ProxyCommon {
 	@Override
 	public void preinit(FMLPreInitializationEvent event) {
 		super.preinit(event);
-		foxie.bettersleeping.KeyBindingHandler keyhandler = new foxie.bettersleeping.KeyBindingHandler();
-		MinecraftForge.EVENT_BUS.register(keyhandler);
 	}
 
 	@Override

@@ -110,11 +110,7 @@ public class EventHandlers {
 		if (data == null)
 			return; // safety, should not happen except maybe some edge cases
 
-		if (KeyBindingHandler.sleepNow.isPressed()) {
-
-			DebuffLogic.checkForSleepNow(event, data);
-		}
-
+		
 		if (Config.enableDebuffs && Config.enableSleepCounter
 				&& ticksSinceUpdate > 20) {
 			// check for debuffs
