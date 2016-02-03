@@ -14,25 +14,28 @@ import net.minecraftforge.common.MinecraftForge;
 
 public class ProxyClient extends ProxyCommon {
 
-   public void registerTESR() {
-      ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAlarm.class, new AlarmRenderer());
-   }
+	public void registerTESR() {
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAlarm.class,
+				new AlarmRenderer());
+	}
 
-   @Override
-   public void preinit(FMLPreInitializationEvent event) {
-      super.preinit(event);
-   }
+	@Override
+	public void preinit(FMLPreInitializationEvent event) {
+		super.preinit(event);
+		foxie.bettersleeping.KeyBindingHandler keyhandler = new foxie.bettersleeping.KeyBindingHandler();
+		MinecraftForge.EVENT_BUS.register(keyhandler);
+	}
 
-   @Override
-   public void init(FMLInitializationEvent event) {
-      super.init(event);
-      registerTESR();
-      if (Config.enableSleepyBar)
-         MinecraftForge.EVENT_BUS.register(new SleepOverlay());
-   }
+	@Override
+	public void init(FMLInitializationEvent event) {
+		super.init(event);
+		registerTESR();
+		if (Config.enableSleepyBar)
+			MinecraftForge.EVENT_BUS.register(new SleepOverlay());
+	}
 
-   @Override
-   public EntityPlayer getPlayer() {
-      return FMLClientHandler.instance().getClientPlayerEntity();
-   }
+	@Override
+	public EntityPlayer getPlayer() {
+		return FMLClientHandler.instance().getClientPlayerEntity();
+	}
 }

@@ -1,15 +1,7 @@
 package foxie.bettersleeping;
 
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
-import cz.ondraster.bettersleeping.api.PlayerData;
-import foxie.bettersleeping.compat.CompatibilityEnviroMine;
-import foxie.bettersleeping.logic.Alarm;
-import foxie.bettersleeping.logic.AlternateSleep;
-import foxie.bettersleeping.logic.CaffeineLogic;
-import foxie.bettersleeping.logic.DebuffLogic;
+import java.util.Random;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.potion.Potion;
@@ -21,227 +13,255 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
-
-import java.util.Random;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
+import cz.ondraster.bettersleeping.api.PlayerData;
+import foxie.bettersleeping.compat.CompatibilityEnviroMine;
+import foxie.bettersleeping.logic.Alarm;
+import foxie.bettersleeping.logic.AlternateSleep;
+import foxie.bettersleeping.logic.CaffeineLogic;
+import foxie.bettersleeping.logic.DebuffLogic;
 
 public class EventHandlers {
 
-   public static EventHandlers INSTANCE;
+	public static EventHandlers INSTANCE;
 
-   private int ticksSinceUpdate = 0;
+	private int ticksSinceUpdate = 0;
 
-   public EventHandlers() {
-      INSTANCE = this;
-   }
+	public EventHandlers() {
+		INSTANCE = this;
+	}
 
-   @SubscribeEvent
-   public void onPlayerDeath(LivingDeathEvent event) {
-      if (event.entity.worldObj.isRemote)
-         return;
+	@SubscribeEvent
+	public void onPlayerDeath(LivingDeathEvent event) {
+		if (event.entity.worldObj.isRemote)
+			return;
 
-      if (!Config.enableSleepCounter)
-         return;
+		if (!Config.enableSleepCounter)
+			return;
 
-      if (!Config.resetCounterOnDeath)
-         return;
+		if (!Config.resetCounterOnDeath)
+			return;
 
-      if (event.entity instanceof EntityPlayer) {
-         EntityPlayer player = (EntityPlayer) event.entity;
-         PlayerData data = BSSavedData.instance().getPlayerData(player.getUniqueID());
-         data.reset(Config.spawnSleepCounter);
-         BSSavedData.instance().markDirty();
-      }
-   }
+		if (event.entity instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) event.entity;
+			PlayerData data = BSSavedData.instance().getPlayerData(
+					player.getUniqueID());
+			data.reset(Config.spawnSleepCounter);
+			BSSavedData.instance().markDirty();
+		}
+	}
 
-   @SubscribeEvent
-   public void onPreWorldTick(TickEvent.WorldTickEvent event) {
-      if (!(event.world instanceof WorldServer))
-         return;
+	@SubscribeEvent
+	public void onPreWorldTick(TickEvent.WorldTickEvent event) {
+		if (!(event.world instanceof WorldServer))
+			return;
 
-      if (event.phase != TickEvent.Phase.START)
-         return;
+		if (event.phase != TickEvent.Phase.START)
+			return;
 
-      WorldServer world = (WorldServer) event.world;
+		WorldServer world = (WorldServer) event.world;
 
-      if (world.areAllPlayersAsleep()) {
-         Alarm.sleepWorld(world);
-      }
-   }
+		if (world.areAllPlayersAsleep()) {
+			Alarm.sleepWorld(world);
+		}
+	}
 
-   @SubscribeEvent
-   public void onPlayerTick(TickEvent.PlayerTickEvent event) {
-      if (event.phase != TickEvent.Phase.START)
-         return;
+	@SubscribeEvent
+	public void onPlayerTick(TickEvent.PlayerTickEvent event) {
+		if (event.phase != TickEvent.Phase.START)
+			return;
 
-      PlayerData data = null;
-      if (event.player.worldObj.isRemote)
-         return;
+		PlayerData data = null;
+		if (event.player.worldObj.isRemote)
+			return;
 
-      if (!event.player.isEntityAlive())
-         return;
+		if (!event.player.isEntityAlive())
+			return;
 
-      if (Config.enableSleepCounter) {
-         data = BSSavedData.instance().getData(event.player);
-         data.ticksSinceUpdate++;
-         double ticksPerSleepCounter = Config.ticksPerSleepCounter;
+		if (Config.enableSleepCounter) {
+			data = BSSavedData.instance().getData(event.player);
+			data.ticksSinceUpdate++;
+			double ticksPerSleepCounter = Config.ticksPerSleepCounter;
 
-         if (event.player.isSprinting())
-            ticksPerSleepCounter /= Config.multiplicatorWhenSprinting;
+			if (event.player.isSprinting())
+				ticksPerSleepCounter /= Config.multiplicatorWhenSprinting;
 
-         if (data.ticksSinceUpdate >= ticksPerSleepCounter) {
-            data.ticksSinceUpdate = 0;
+			if (data.ticksSinceUpdate >= ticksPerSleepCounter) {
+				data.ticksSinceUpdate = 0;
 
-            if (!event.player.capabilities.isCreativeMode && !event.player.isPlayerSleeping())
-               data.decreaseSleepLevel();
-         }
+				if (!event.player.capabilities.isCreativeMode
+						&& !event.player.isPlayerSleeping())
+					data.decreaseSleepLevel();
+			}
 
-         if (event.player.isPlayerSleeping() && Config.giveSleepCounterOnSleep > 0) {
-            if (!(Config.capEnergyBar && data.getSleepLevel() >= Config.maximumSleepCounter))
-               data.increaseSleepLevel(Config.giveSleepCounterOnSleep);
-         }
+			if (event.player.isPlayerSleeping()
+					&& Config.giveSleepCounterOnSleep > 0) {
+				if (!(Config.capEnergyBar && data.getSleepLevel() >= Config.maximumSleepCounter))
+					data.increaseSleepLevel(Config.giveSleepCounterOnSleep);
+			}
 
-         // send update about tiredness to the client
-         DebuffLogic.updateClientIfNeeded(event.player, data);
-      }
+			// send update about tiredness to the client
+			DebuffLogic.updateClientIfNeeded(event.player, data);
+		}
 
-      if (data == null)
-         return; // safety, should not happen except maybe some edge cases
+		if (data == null)
+			return; // safety, should not happen except maybe some edge cases
 
-      if (Config.enableDebuffs && Config.enableSleepCounter && ticksSinceUpdate > 20) {
-         // check for debuffs
-         DebuffLogic.checkForDebuffs(event, data);
+		if (KeyBindingHandler.sleepNow.isPressed()) {
 
-         if (Config.enableCaffeine) {
-            CaffeineLogic.checkDebuff(event.player);
-         }
+			DebuffLogic.checkForSleepNow(event, data);
+		}
 
-         if (Config.enviromineSanityDecrease > 0 && Loader.isModLoaded("enviromine")) {
-            if (Config.enviromineSanityAt > ((float) data.getSleepLevel() / Config.maximumSleepCounter) * 100f)
-               CompatibilityEnviroMine.changeSanity(event.player, Config.enviromineSanityDecrease * (-1));
-         }
+		if (Config.enableDebuffs && Config.enableSleepCounter
+				&& ticksSinceUpdate > 20) {
+			// check for debuffs
+			DebuffLogic.checkForDebuffs(event, data);
 
-         ticksSinceUpdate = 0;
-      }
+			if (Config.enableCaffeine) {
+				CaffeineLogic.checkDebuff(event.player);
+			}
 
-      BSSavedData.instance().markDirty();
+			if (Config.enviromineSanityDecrease > 0
+					&& Loader.isModLoaded("enviromine")) {
+				if (Config.enviromineSanityAt > ((float) data.getSleepLevel() / Config.maximumSleepCounter) * 100f)
+					CompatibilityEnviroMine.changeSanity(event.player,
+							Config.enviromineSanityDecrease * (-1));
+			}
 
-      ticksSinceUpdate++;
-   }
+			ticksSinceUpdate = 0;
+		}
 
-   @SubscribeEvent
-   public void onPlayerSleepInBed(PlayerSleepInBedEvent event) {
-      if (event.entityPlayer.worldObj.isRemote)
-         return;
+		BSSavedData.instance().markDirty();
 
-      if (Config.disableSleeping) {
-         event.entityPlayer.addChatComponentMessage(new ChatComponentTranslation("msg.sleepingDisabled"));
-         event.result = EntityPlayer.EnumStatus.OTHER_PROBLEM;
-         return;
-      }
+		ticksSinceUpdate++;
+	}
 
-      if (Config.enableSleepCounter) {
-         PlayerData data = BSSavedData.instance().getData(event.entityPlayer);
+	@SubscribeEvent
+	public void onPlayerSleepInBed(PlayerSleepInBedEvent event) {
+		if (event.entityPlayer.worldObj.isRemote)
+			return;
 
-         if (data.getSleepLevel() >= Config.maximumSleepCounter) {
-            event.entityPlayer.addChatComponentMessage(new ChatComponentTranslation("msg.notTired"));
-            event.result = EntityPlayer.EnumStatus.OTHER_PROBLEM;
-         }
-      }
+		if (Config.disableSleeping) {
+			event.entityPlayer
+					.addChatComponentMessage(new ChatComponentTranslation(
+							"msg.sleepingDisabled"));
+			event.result = EntityPlayer.EnumStatus.OTHER_PROBLEM;
+			return;
+		}
 
-      // check for amount of people sleeping in this dimension
-      AlternateSleep.trySleepingWorld(event.entityPlayer.worldObj);
-   }
+		if (Config.enableSleepCounter) {
+			PlayerData data = BSSavedData.instance()
+					.getData(event.entityPlayer);
 
-   @SubscribeEvent
-   public void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
-      if (event.player.worldObj == null)
-         return;
+			if (data.getSleepLevel() >= Config.maximumSleepCounter) {
+				event.entityPlayer
+						.addChatComponentMessage(new ChatComponentTranslation(
+								"msg.notTired"));
+				event.result = EntityPlayer.EnumStatus.OTHER_PROBLEM;
+			}
+		}
 
-      if (event.player.worldObj.isRemote)
-         return;
+		// check for amount of people sleeping in this dimension
+		AlternateSleep.trySleepingWorld(event.entityPlayer.worldObj);
+	}
 
-      if (Config.percentPeopleToSleep > 1)
-         return;
+	@SubscribeEvent
+	public void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
+		if (event.player.worldObj == null)
+			return;
 
-      AlternateSleep.trySleepingWorld(event.player.worldObj, true);
-   }
+		if (event.player.worldObj.isRemote)
+			return;
 
-   @SubscribeEvent
-   public void onEntityJump(LivingEvent.LivingJumpEvent event) {
-      if (event.entity instanceof EntityPlayer && Config.tirednessJump > 0) {
-         EntityPlayer player = (EntityPlayer) event.entity;
-         if (player.worldObj.isRemote)
-            return;
+		if (Config.percentPeopleToSleep > 1)
+			return;
 
-         if (player.capabilities.isCreativeMode)
-            return;
+		AlternateSleep.trySleepingWorld(event.player.worldObj, true);
+	}
 
-         PlayerData data = BSSavedData.instance().getData(player);
-         if (player.isSprinting())
-            data.decreaseSleepLevel((long) (Config.tirednessJump * Config.multiplicatorWhenSprinting));
-         else
-            data.decreaseSleepLevel(Config.tirednessJump);
+	@SubscribeEvent
+	public void onEntityJump(LivingEvent.LivingJumpEvent event) {
+		if (event.entity instanceof EntityPlayer && Config.tirednessJump > 0) {
+			EntityPlayer player = (EntityPlayer) event.entity;
+			if (player.worldObj.isRemote)
+				return;
 
-         BSSavedData.instance().markDirty();
+			if (player.capabilities.isCreativeMode)
+				return;
 
-      }
-   }
+			PlayerData data = BSSavedData.instance().getData(player);
+			if (player.isSprinting())
+				data.decreaseSleepLevel((long) (Config.tirednessJump * Config.multiplicatorWhenSprinting));
+			else
+				data.decreaseSleepLevel(Config.tirednessJump);
 
-   @SubscribeEvent
-   public void onPlayerWakeUpEvent(PlayerWakeUpEvent event) {
-      if (event.entityPlayer.worldObj.isRemote)
-         return;
+			BSSavedData.instance().markDirty();
 
-      Random rand = event.entityPlayer.worldObj.rand;
+		}
+	}
 
-      if (rand.nextFloat() < Config.chanceToGetBadNight) {
-         if (rand.nextFloat() >= 0.5f)
-            event.entityPlayer.addPotionEffect(new PotionEffect(Potion.weakness.getId(), 60, rand.nextInt(2) + 1));
-         else
-            event.entityPlayer.addPotionEffect(new PotionEffect(Potion.moveSlowdown.getId(), 60, rand.nextInt(2) + 1));
-      } else if (rand.nextFloat() < Config.chanceToGetGoodNight) {
-         if (rand.nextFloat() >= 0.5f)
-            event.entityPlayer.addPotionEffect(new PotionEffect(Potion.heal.getId(), 60, rand.nextInt(2) + 1));
-         else
-            event.entityPlayer.addPotionEffect(new PotionEffect(Potion.regeneration.getId(), 60, rand.nextInt(2) + 1));
-      }
-   }
+	@SubscribeEvent
+	public void onPlayerWakeUpEvent(PlayerWakeUpEvent event) {
+		if (event.entityPlayer.worldObj.isRemote)
+			return;
 
-   @SubscribeEvent
-   public void onPlayerUseItem(PlayerUseItemEvent.Finish event) {
-      if (event.entityPlayer.worldObj.isRemote)
-         return;
+		Random rand = event.entityPlayer.worldObj.rand;
 
-      PlayerData data = BSSavedData.instance().getData(event.entityPlayer);
+		if (rand.nextFloat() < Config.chanceToGetBadNight) {
+			if (rand.nextFloat() >= 0.5f)
+				event.entityPlayer.addPotionEffect(new PotionEffect(
+						Potion.weakness.getId(), 60, rand.nextInt(2) + 1));
+			else
+				event.entityPlayer.addPotionEffect(new PotionEffect(
+						Potion.moveSlowdown.getId(), 60, rand.nextInt(2) + 1));
+		} else if (rand.nextFloat() < Config.chanceToGetGoodNight) {
+			if (rand.nextFloat() >= 0.5f)
+				event.entityPlayer.addPotionEffect(new PotionEffect(Potion.heal
+						.getId(), 60, rand.nextInt(2) + 1));
+			else
+				event.entityPlayer.addPotionEffect(new PotionEffect(
+						Potion.regeneration.getId(), 60, rand.nextInt(2) + 1));
+		}
+	}
 
-      if (CaffeineLogic.isCoffee(event.item)) {
-         if (event.result.getItem() instanceof ItemFood) {
-            ItemFood food = (ItemFood) event.result.getItem();
-            float hunger = food.func_150905_g(event.result);
-            float saturation = food.func_150906_h(event.result);
-            hunger *= Config.itemFoodHungerMult;
-            saturation *= Config.itemFoodSaturationMult;
-            data.increaseCaffeineLevel(hunger);
-            data.increaseSleepLevel((int) saturation);
-         } else {
-            data.increaseCaffeineLevel(Config.caffeinePerItem);
-            data.increaseSleepLevel(Config.tirednessPerCaffeine);
-         }
+	@SubscribeEvent
+	public void onPlayerUseItem(PlayerUseItemEvent.Finish event) {
+		if (event.entityPlayer.worldObj.isRemote)
+			return;
 
-         BSSavedData.instance().markDirty();
-      }
+		PlayerData data = BSSavedData.instance().getData(event.entityPlayer);
 
-      if (CaffeineLogic.isPill(event.item)) {
-         data.increasePillLevel(Config.pillPerPill);
-         BSSavedData.instance().markDirty();
-      }
+		if (CaffeineLogic.isCoffee(event.item)) {
+			if (event.result.getItem() instanceof ItemFood) {
+				ItemFood food = (ItemFood) event.result.getItem();
+				float hunger = food.func_150905_g(event.result);
+				float saturation = food.func_150906_h(event.result);
+				hunger *= Config.itemFoodHungerMult;
+				saturation *= Config.itemFoodSaturationMult;
+				data.increaseCaffeineLevel(hunger);
+				data.increaseSleepLevel((int) saturation);
+			} else {
+				data.increaseCaffeineLevel(Config.caffeinePerItem);
+				data.increaseSleepLevel(Config.tirednessPerCaffeine);
+			}
 
-      if (CaffeineLogic.isSleepingPill(event.item)) {
-         data.decreaseSleepLevel(Config.sleepingPillAmount);
-         BSSavedData.instance().markDirty();
-      }
+			BSSavedData.instance().markDirty();
+		}
 
-      // send update about tiredness to the client
-      DebuffLogic.updateClientIfNeeded(event.entityPlayer, data);
-   }
+		if (CaffeineLogic.isPill(event.item)) {
+			data.increasePillLevel(Config.pillPerPill);
+			BSSavedData.instance().markDirty();
+		}
+
+		if (CaffeineLogic.isSleepingPill(event.item)) {
+			data.decreaseSleepLevel(Config.sleepingPillAmount);
+			BSSavedData.instance().markDirty();
+		}
+
+		// send update about tiredness to the client
+		DebuffLogic.updateClientIfNeeded(event.entityPlayer, data);
+	}
 }

@@ -64,5 +64,36 @@ public class DebuffLogic {
          }
       }
    }
+   
+   public static void checkForSleepNow(TickEvent.PlayerTickEvent event, PlayerData data) {
+	      List<PlayerDebuff> debuffs = BetterSleepingAPI.getDebuffs();
+	      for (PlayerDebuff debuff : debuffs) {
+	         if (debuff.enable && data.getSleepLevel() < debuff.tiredLevel) {
+	            double percentTired = (debuff.tiredLevel - data.getSleepLevel()) / (double) (debuff.tiredLevel);
+	            int scale = (int) Math.ceil(percentTired * debuff.maxScale) - 1;
+	            event.player.addPotionEffect(
+	                  new PotionEffect(debuff.potion.getId(), Config.POTION_DURATION * 2, scale));
+	         }
+	      }
+
+	      // should fall asleep on the ground
+	     
+	         boolean result = MinecraftForge.EVENT_BUS.post(new WorldSleepEvent.SleepOnGround(event.player));
+
+	         if (!result) {
+	            EntityPlayer.EnumStatus sleepResult = event.player.sleepInBedAt((int) event.player.posX, (int) event.player.posY, (int) event
+	                  .player.posZ);
+
+	            if (sleepResult == EntityPlayer.EnumStatus.OK) {
+	               if (Config.enablePositionReset) {
+	                  ChunkCoordinates chunkCoordinates =
+	                        AlternateSleep.getSafePosition(event.player.worldObj, event.player.posX, event.player
+	                              .posY, event.player.posZ);
+	                  event.player.setPosition(chunkCoordinates.posX + 0.5f, chunkCoordinates.posY + 0.1f, chunkCoordinates.posZ + 0.5f);
+	               }
+	            }
+	         }
+	      
+	   }
 
 }
