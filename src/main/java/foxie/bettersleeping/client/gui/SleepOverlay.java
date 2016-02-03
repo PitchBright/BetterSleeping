@@ -56,7 +56,7 @@ public class SleepOverlay extends OptionalGuiOverlay {
 
 //      int takenPercent = (int) (((double) sleepCounter / Config.maximumSleepCounter) * MAX_OFFSET);
       int barRemaining = (int) (((double) sleepCounter / Config.maximumSleepCounter) * 182); 
-      System.out.println(sleepCounter);
+//      System.out.println(sleepCounter);
 //      if (takenPercent > MAX_OFFSET)
 //         takenPercent = MAX_OFFSET;
 
