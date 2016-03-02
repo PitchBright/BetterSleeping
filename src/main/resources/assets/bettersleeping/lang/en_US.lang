@@ -9,3 +9,4 @@ msg.playersSleeping=%s%% of players are sleeping. Hop into bed and join them!
 msg.goodNight=Good night!
 death.attack.overdose=%s has died from caffeine intoxication!
 death.attack.pill=%s has died from nomming on too many pills!
+key.khufu.sleepNow=Sleep
