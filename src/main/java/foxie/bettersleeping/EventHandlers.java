@@ -2,16 +2,6 @@ package foxie.bettersleeping;
 
 import java.util.Random;
 
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
-import cz.ondraster.bettersleeping.api.PlayerData;
-import foxie.bettersleeping.compat.CompatibilityEnviroMine;
-import foxie.bettersleeping.logic.Alarm;
-import foxie.bettersleeping.logic.AlternateSleep;
-import foxie.bettersleeping.logic.CaffeineLogic;
-import foxie.bettersleeping.logic.DebuffLogic;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.potion.Potion;
@@ -23,6 +13,16 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
+import cz.ondraster.bettersleeping.api.PlayerData;
+import foxie.bettersleeping.compat.CompatibilityEnviroMine;
+import foxie.bettersleeping.logic.Alarm;
+import foxie.bettersleeping.logic.AlternateSleep;
+import foxie.bettersleeping.logic.CaffeineLogic;
+import foxie.bettersleeping.logic.DebuffLogic;
 
 public class EventHandlers {
 
@@ -61,7 +61,9 @@ public class EventHandlers {
 
 		if (event.phase != TickEvent.Phase.START)
 			return;
-
+//		System.out.println(world);
+//		BSLog.info("Time is %d", event.world.getWorldTime());
+//		System.out.println("Time is %d", event.world.getWorldTime());
 		WorldServer world = (WorldServer) event.world;
 
 		if (world.areAllPlayersAsleep()) {
@@ -81,6 +83,14 @@ public class EventHandlers {
 		if (!event.player.isEntityAlive())
 			return;
 
+		data = BSSavedData.instance().getData(event.player);
+		  
+//		  long bedTime = data.getDayTicksAtLastLogOff() + (data.getSleepLevel() - 6000);
+		  long bedTime = event.player.worldObj.getWorldTime() + (data.getSleepLevel() - 6000);
+		  long wakeTime = (event.player.worldObj.getWorldTime() + ((24000 - data.getSleepLevel()) / 3) % 24000);
+		  BSLog.info("Curr: %d, Enr: %d, Log: %d, Bed: %d, Wake: %d", event.player.worldObj.getWorldTime(), data.getSleepLevel(), data.getDayTicksAtLastLogOff(), bedTime, wakeTime);
+		
+		
 		if (Config.enableSleepCounter) {
 			data = BSSavedData.instance().getData(event.player);
 			data.ticksSinceUpdate++;
@@ -177,42 +187,45 @@ public class EventHandlers {
 		long totalTicksLoggedOff = event.player.worldObj.getTotalWorldTime() - data.getTicksSinceLastLogOff();
 		data.decreaseCaffeineLevel(totalTicksLoggedOff * Config.caffeinePerTick);
 		
-		long bedTime = data.getDayTicksAtLastLogOff() + (data.getSleepLevel() - 6000);
+		long bedTime = event.player.worldObj.getWorldTime() + (data.getSleepLevel() - 6000);
 		long wakeTime = (event.player.worldObj.getWorldTime() + ((24000 - data.getSleepLevel()) / 3) % 24000);
+		long logTime = data.getDayTicksAtLastLogOff();
+		long curTime = event.player.worldObj.getWorldTime();
 		
-		if(data.getDayTicksAtLastLogOff() > event.player.worldObj.getWorldTime())
+		
+		if(curTime > logTime)
 		{
-			if(event.player.worldObj.getWorldTime() < bedTime)
+			if(curTime < bedTime)
 			{
-				data.decreaseSleepLevel((long) (Config.ticksPerSleepCounter * (event.player.worldObj.getWorldTime() - data.getDayTicksAtLastLogOff()) / Config.ticksPerSleepCounter));
+				data.decreaseSleepLevel((long) (curTime - logTime));
 			}
 			else
 			{
-				if(event.player.worldObj.getWorldTime() < wakeTime)
+				if(curTime < wakeTime)
 				{
-					data.increaseSleepLevel((long) (Config.sleepPerSleptTick * (event.player.worldObj.getWorldTime() - data.getDayTicksAtLastLogOff()) * 3) / Config.ticksPerSleepCounter);
+					data.setSleepLevel((long) (curTime - bedTime) * 3);
 				}
 				else
 				{
-					data.setSleepLevel((24000 - (event.player.worldObj.getWorldTime() - wakeTime)));
+					data.setSleepLevel((24000 - (curTime - wakeTime)));
 				}
 			}
 		}
 		else
 		{
-			if(event.player.worldObj.getWorldTime() > wakeTime)
+			if(curTime > wakeTime)
 			{
-				data.increaseSleepLevel(data.getDayTicksAtLastLogOff() - event.player.worldObj.getWorldTime());
+				data.increaseSleepLevel(logTime - curTime);
 			}
 			else
 			{
-				if(event.player.worldObj.getWorldTime() > bedTime)
+				if(curTime > bedTime)
 				{
-					data.setSleepLevel(24000 - ((wakeTime - event.player.worldObj.getWorldTime()) *3));
+					data.setSleepLevel(24000 - (wakeTime - curTime) *3);
 				}
 				else
 				{
-					data.setSleepLevel(6000 + (bedTime - event.player.worldObj.getWorldTime()));
+					data.setSleepLevel(6000 + (bedTime - curTime));
 				}
 			}
 		}

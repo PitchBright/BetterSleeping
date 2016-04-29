@@ -32,7 +32,7 @@ public class BaublesApi
 	    } 
 	    catch(Exception ex) 
 	    { 
-	    	FMLLog.warning("[Baubles API] Could not invoke baubles.common.lib.PlayerHandler method getPlayerBaubles");
+//	    	FMLLog.warning("[Baubles API] Could not invoke baubles.common.lib.PlayerHandler method getPlayerBaubles");
 	    }
 	    
 		return ot;
