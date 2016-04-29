@@ -1,6 +1,5 @@
 package enviromine.core;
 
-import enviromine.trackers.properties.*;
 import java.io.File;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -9,6 +8,17 @@ import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
+
+import enviromine.trackers.properties.ArmorProperties;
+import enviromine.trackers.properties.BiomeProperties;
+import enviromine.trackers.properties.BlockProperties;
+import enviromine.trackers.properties.CaveGenProperties;
+import enviromine.trackers.properties.CaveSpawnProperties;
+import enviromine.trackers.properties.DimensionProperties;
+import enviromine.trackers.properties.EntityProperties;
+import enviromine.trackers.properties.ItemProperties;
+import enviromine.trackers.properties.RotProperties;
+import enviromine.trackers.properties.StabilityType;
 
 public class EM_Settings
 {

@@ -1,12 +1,12 @@
 package cz.ondraster.bettersleeping.api;
 
-import cpw.mods.fml.common.FMLLog;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.potion.Potion;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import cpw.mods.fml.common.FMLLog;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.potion.Potion;
 
 public class BetterSleepingAPI {
    private static List<PlayerDebuff> debuffs;

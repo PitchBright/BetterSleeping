@@ -1,6 +1,7 @@
 package enviromine.gases.types;
 
 import java.awt.Color;
+
 import enviromine.gases.EnviroGas;
 import enviromine.gases.EnviroGasDictionary;
 import net.minecraft.entity.EntityLivingBase;

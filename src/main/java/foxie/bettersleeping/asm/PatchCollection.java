@@ -1,19 +1,20 @@
 package foxie.bettersleeping.asm;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassVisitor;
+import org.objectweb.asm.ClassWriter;
+
 import foxie.bettersleeping.BSLog;
 import foxie.bettersleeping.asm.patches.ClassPatch;
 import foxie.bettersleeping.asm.patches.PatchHarvestTheNether;
 import foxie.bettersleeping.asm.patches.PatchIsDay;
 import foxie.bettersleeping.asm.patches.PatchIsInBed;
 import net.minecraft.launchwrapper.IClassTransformer;
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.ClassWriter;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class PatchCollection implements IClassTransformer {
    public static Map<String, List<Class<? extends ClassPatch>>> patchClasses;

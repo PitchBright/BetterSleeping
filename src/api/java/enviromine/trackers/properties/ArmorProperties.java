@@ -3,14 +3,6 @@ package enviromine.trackers.properties;
 import java.io.File;
 import java.util.Iterator;
 
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.config.Configuration;
-
 import org.apache.logging.log4j.Level;
 
 import enviromine.core.EM_ConfigHandler;
@@ -19,6 +11,13 @@ import enviromine.core.EnviroMine;
 import enviromine.trackers.properties.helpers.PropertyBase;
 import enviromine.trackers.properties.helpers.SerialisableProperty;
 import enviromine.utils.EnviroUtils;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.config.Configuration;
 
 public class ArmorProperties implements SerialisableProperty, PropertyBase
 {

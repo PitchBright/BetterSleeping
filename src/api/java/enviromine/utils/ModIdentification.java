@@ -3,16 +3,18 @@ package enviromine.utils;
 import java.io.File;
 import java.net.URLDecoder;
 import java.util.HashMap;
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+
 import org.apache.logging.log4j.Level;
+
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry.EntityRegistration;
 import enviromine.core.EnviroMine;
+import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class ModIdentification
 {

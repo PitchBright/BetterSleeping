@@ -1,6 +1,14 @@
 package enviromine.core.commands;
 
 import java.util.Iterator;
+
+import org.apache.logging.log4j.Level;
+
+import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
+import enviromine.core.EM_Settings;
+import enviromine.core.EnviroMine;
+import enviromine.network.packet.PacketEnviroMine;
+import enviromine.world.Earthquake;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.nbt.NBTTagCompound;
@@ -9,12 +17,6 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import org.apache.logging.log4j.Level;
-import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
-import enviromine.core.EM_Settings;
-import enviromine.core.EnviroMine;
-import enviromine.network.packet.PacketEnviroMine;
-import enviromine.world.Earthquake;
 
 public class QuakeCommand extends CommandBase
 {

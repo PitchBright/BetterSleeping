@@ -6,10 +6,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
-import net.minecraft.nbt.NBTBase;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
+
 import org.apache.logging.log4j.Level;
+
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -17,6 +16,9 @@ import enviromine.core.EM_Settings;
 import enviromine.core.EM_Settings.ShouldOverride;
 import enviromine.core.EnviroMine;
 import enviromine.trackers.properties.helpers.SerialisableProperty;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 
 public class PacketAutoOverride extends PacketServerOverride implements IMessage
 {

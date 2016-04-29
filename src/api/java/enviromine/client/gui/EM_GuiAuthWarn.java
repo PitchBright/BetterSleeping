@@ -3,9 +3,6 @@ package enviromine.client.gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.util.EnumChatFormatting;
-import enviromine.core.EM_Settings;
-import enviromine.utils.LockedClass;
 
 public class EM_GuiAuthWarn extends GuiScreen
 {

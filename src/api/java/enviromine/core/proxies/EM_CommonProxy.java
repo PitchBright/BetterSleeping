@@ -1,7 +1,5 @@
 package enviromine.core.proxies;
 
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.oredict.RecipeSorter;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -15,6 +13,8 @@ import enviromine.handlers.crafting.CamelPackIntegrationHandler;
 import enviromine.handlers.crafting.CamelPackRefillHandler;
 import enviromine.handlers.crafting.GaskMaskRefillHandler;
 import enviromine.handlers.crafting.LampLightingHandler;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.oredict.RecipeSorter;
 
 public class EM_CommonProxy
 {

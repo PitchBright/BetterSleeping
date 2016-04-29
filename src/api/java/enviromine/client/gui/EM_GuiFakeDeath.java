@@ -1,10 +1,10 @@
 package enviromine.client.gui;
 
-import net.minecraft.client.gui.GuiGameOver;
+import org.lwjgl.input.Keyboard;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import org.lwjgl.input.Keyboard;
+import net.minecraft.client.gui.GuiGameOver;
 
 @SideOnly(Side.CLIENT)
 public class EM_GuiFakeDeath extends GuiGameOver

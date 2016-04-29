@@ -1,6 +1,7 @@
 package enviromine.gases;
 
 import java.awt.Color;
+
 import enviromine.handlers.EM_StatusManager;
 import enviromine.trackers.EnviroDataTracker;
 import net.minecraft.entity.EntityLivingBase;

@@ -1,11 +1,11 @@
 package enviromine.core.commands;
 
+import enviromine.core.EM_Settings;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.StatCollector;
-import enviromine.core.EM_Settings;
 
 public class CommandPhysics extends CommandBase
 {

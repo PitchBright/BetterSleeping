@@ -3,11 +3,6 @@ package enviromine.trackers.properties;
 import java.io.File;
 import java.util.Iterator;
 
-import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.config.Configuration;
-
 import org.apache.logging.log4j.Level;
 
 import enviromine.core.EM_ConfigHandler;
@@ -17,6 +12,10 @@ import enviromine.trackers.properties.helpers.PropertyBase;
 import enviromine.trackers.properties.helpers.SerialisableProperty;
 import enviromine.utils.EnviroUtils;
 import enviromine.utils.ModIdentification;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.config.Configuration;
 
 public class EntityProperties implements SerialisableProperty, PropertyBase
 {

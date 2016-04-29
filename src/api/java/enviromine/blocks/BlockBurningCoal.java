@@ -6,7 +6,16 @@ import static net.minecraftforge.common.util.ForgeDirection.NORTH;
 import static net.minecraftforge.common.util.ForgeDirection.SOUTH;
 import static net.minecraftforge.common.util.ForgeDirection.UP;
 import static net.minecraftforge.common.util.ForgeDirection.WEST;
+
 import java.util.Random;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import enviromine.blocks.tiles.TileEntityBurningCoal;
+import enviromine.blocks.tiles.TileEntityGas;
+import enviromine.core.EM_Settings;
+import enviromine.gases.EnviroGasDictionary;
+import enviromine.handlers.ObjectHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -16,13 +25,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import enviromine.blocks.tiles.TileEntityBurningCoal;
-import enviromine.blocks.tiles.TileEntityGas;
-import enviromine.core.EM_Settings;
-import enviromine.gases.EnviroGasDictionary;
-import enviromine.handlers.ObjectHandler;
 
 public class BlockBurningCoal extends Block implements ITileEntityProvider
 {

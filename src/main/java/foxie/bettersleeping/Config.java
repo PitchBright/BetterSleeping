@@ -1,12 +1,12 @@
 package foxie.bettersleeping;
 
+import java.io.File;
+
+import cz.ondraster.bettersleeping.api.BetterSleepingAPI;
 import cz.ondraster.bettersleeping.api.BetterSleepingAPI;
 import cz.ondraster.bettersleeping.api.PlayerDebuff;
-import cz.ondraster.bettersleeping.api.BetterSleepingAPI;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.common.config.Configuration;
-
-import java.io.File;
 
 public class Config {
    // PRIVATE

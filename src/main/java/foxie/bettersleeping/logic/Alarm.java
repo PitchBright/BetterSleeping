@@ -1,10 +1,13 @@
 package foxie.bettersleeping.logic;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import cz.ondraster.bettersleeping.api.PlayerData;
+import cz.ondraster.bettersleeping.api.WorldSleepEvent;
 import foxie.bettersleeping.BSSavedData;
 import foxie.bettersleeping.BetterSleeping;
 import foxie.bettersleeping.Config;
-import cz.ondraster.bettersleeping.api.PlayerData;
-import cz.ondraster.bettersleeping.api.WorldSleepEvent;
 import foxie.bettersleeping.tileentity.TileEntityAlarm;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -12,9 +15,6 @@ import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.MinecraftForge;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Alarm {
    public static final int MINUTES_IN_HOUR = 50;

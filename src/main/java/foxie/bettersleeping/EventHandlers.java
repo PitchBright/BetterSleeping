@@ -2,6 +2,16 @@ package foxie.bettersleeping;
 
 import java.util.Random;
 
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
+import cz.ondraster.bettersleeping.api.PlayerData;
+import foxie.bettersleeping.compat.CompatibilityEnviroMine;
+import foxie.bettersleeping.logic.Alarm;
+import foxie.bettersleeping.logic.AlternateSleep;
+import foxie.bettersleeping.logic.CaffeineLogic;
+import foxie.bettersleeping.logic.DebuffLogic;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.potion.Potion;
@@ -13,16 +23,6 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.event.entity.player.PlayerUseItemEvent;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
-import cz.ondraster.bettersleeping.api.PlayerData;
-import foxie.bettersleeping.compat.CompatibilityEnviroMine;
-import foxie.bettersleeping.logic.Alarm;
-import foxie.bettersleeping.logic.AlternateSleep;
-import foxie.bettersleeping.logic.CaffeineLogic;
-import foxie.bettersleeping.logic.DebuffLogic;
 
 public class EventHandlers {
 
@@ -110,7 +110,6 @@ public class EventHandlers {
 		if (data == null)
 			return; // safety, should not happen except maybe some edge cases
 
-		
 		if (Config.enableDebuffs && Config.enableSleepCounter
 				&& ticksSinceUpdate > 20) {
 			// check for debuffs
@@ -165,6 +164,61 @@ public class EventHandlers {
 	}
 
 	@SubscribeEvent
+	public void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event)
+	{
+		if (event.player.worldObj == null)
+			return;
+
+		if (event.player.worldObj.isRemote)
+			return;
+		
+		PlayerData data = BSSavedData.instance().getData(event.player);
+		
+		long totalTicksLoggedOff = event.player.worldObj.getTotalWorldTime() - data.getTicksSinceLastLogOff();
+		data.decreaseCaffeineLevel(totalTicksLoggedOff * Config.caffeinePerTick);
+		
+		long bedTime = data.getDayTicksAtLastLogOff() + (data.getSleepLevel() - 6000);
+		long wakeTime = (event.player.worldObj.getWorldTime() + ((24000 - data.getSleepLevel()) / 3) % 24000);
+		
+		if(data.getDayTicksAtLastLogOff() > event.player.worldObj.getWorldTime())
+		{
+			if(event.player.worldObj.getWorldTime() < bedTime)
+			{
+				data.decreaseSleepLevel((long) (Config.ticksPerSleepCounter * (event.player.worldObj.getWorldTime() - data.getDayTicksAtLastLogOff()) / Config.ticksPerSleepCounter));
+			}
+			else
+			{
+				if(event.player.worldObj.getWorldTime() < wakeTime)
+				{
+					data.increaseSleepLevel((long) (Config.sleepPerSleptTick * (event.player.worldObj.getWorldTime() - data.getDayTicksAtLastLogOff()) * 3) / Config.ticksPerSleepCounter);
+				}
+				else
+				{
+					data.setSleepLevel((24000 - (event.player.worldObj.getWorldTime() - wakeTime)));
+				}
+			}
+		}
+		else
+		{
+			if(event.player.worldObj.getWorldTime() > wakeTime)
+			{
+				data.increaseSleepLevel(data.getDayTicksAtLastLogOff() - event.player.worldObj.getWorldTime());
+			}
+			else
+			{
+				if(event.player.worldObj.getWorldTime() > bedTime)
+				{
+					data.setSleepLevel(24000 - ((wakeTime - event.player.worldObj.getWorldTime()) *3));
+				}
+				else
+				{
+					data.setSleepLevel(6000 + (bedTime - event.player.worldObj.getWorldTime()));
+				}
+			}
+		}
+	}
+	
+	@SubscribeEvent
 	public void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
 		if (event.player.worldObj == null)
 			return;
@@ -172,9 +226,13 @@ public class EventHandlers {
 		if (event.player.worldObj.isRemote)
 			return;
 
+		PlayerData data = BSSavedData.instance().getData(event.player);
+		
+		data.setLoggedOff(event.player.worldObj.getTotalWorldTime(), event.player.worldObj.getWorldTime());
+		
 		if (Config.percentPeopleToSleep > 1)
 			return;
-
+		
 		AlternateSleep.trySleepingWorld(event.player.worldObj, true);
 	}
 

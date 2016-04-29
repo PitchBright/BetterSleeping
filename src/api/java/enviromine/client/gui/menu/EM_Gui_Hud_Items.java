@@ -2,15 +2,15 @@ package enviromine.client.gui.menu;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import enviromine.client.gui.SaveController;
+import enviromine.client.gui.hud.HUDRegistry;
+import enviromine.client.gui.hud.HudItem;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiYesNo;
 import net.minecraft.client.gui.GuiYesNoCallback;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.StatCollector;
-import enviromine.client.gui.SaveController;
-import enviromine.client.gui.hud.HUDRegistry;
-import enviromine.client.gui.hud.HudItem;
 
 @SideOnly(Side.CLIENT)
 public class EM_Gui_Hud_Items extends GuiScreen implements GuiYesNoCallback

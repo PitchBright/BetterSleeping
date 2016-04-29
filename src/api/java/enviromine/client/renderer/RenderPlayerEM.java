@@ -2,9 +2,9 @@ package enviromine.client.renderer;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import enviromine.client.models.ModelPlayerEM;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.entity.EntityLivingBase;
-import enviromine.client.models.ModelPlayerEM;
 
 @SideOnly(Side.CLIENT)
 public class RenderPlayerEM extends RenderPlayer {

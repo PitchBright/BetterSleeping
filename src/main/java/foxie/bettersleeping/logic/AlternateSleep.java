@@ -1,5 +1,9 @@
 package foxie.bettersleeping.logic;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import foxie.bettersleeping.Config;
@@ -14,10 +18,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.ForgeModContainer;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 public class AlternateSleep {
    @SuppressWarnings("unchecked")

@@ -1,6 +1,11 @@
 package enviromine.handlers.crafting;
 
 import java.util.HashMap;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
+import enviromine.core.EM_Settings;
+import enviromine.trackers.properties.ItemProperties;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCrafting;
@@ -8,10 +13,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent;
-import enviromine.core.EM_Settings;
-import enviromine.trackers.properties.ItemProperties;
 
 public class CamelPackRefillHandler implements IRecipe
 {

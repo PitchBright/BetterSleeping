@@ -1,13 +1,12 @@
 package enviromine.handlers.keybinds;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.util.ChatComponentText;
+import org.lwjgl.input.Keyboard;
 
 import enviromine.core.EM_ConfigHandler;
 import enviromine.core.EM_Settings;
 import enviromine.core.EnviroMine;
-
-import org.lwjgl.input.Keyboard;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.ChatComponentText;
 
 public class ReloadCustomObjects
 {

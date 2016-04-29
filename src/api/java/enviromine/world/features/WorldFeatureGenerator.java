@@ -2,6 +2,14 @@ package enviromine.world.features;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import cpw.mods.fml.common.IWorldGenerator;
+import enviromine.blocks.tiles.TileEntityGas;
+import enviromine.core.EM_Settings;
+import enviromine.gases.EnviroGasDictionary;
+import enviromine.handlers.ObjectHandler;
+import enviromine.trackers.properties.DimensionProperties;
+import enviromine.world.features.mineshaft.MineshaftBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -12,13 +20,6 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.oredict.OreDictionary;
-import cpw.mods.fml.common.IWorldGenerator;
-import enviromine.blocks.tiles.TileEntityGas;
-import enviromine.core.EM_Settings;
-import enviromine.gases.EnviroGasDictionary;
-import enviromine.handlers.ObjectHandler;
-import enviromine.trackers.properties.DimensionProperties;
-import enviromine.world.features.mineshaft.MineshaftBuilder;
 
 public class WorldFeatureGenerator implements IWorldGenerator
 {

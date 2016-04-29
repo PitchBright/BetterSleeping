@@ -1,9 +1,8 @@
 package enviromine.client.gui;
 
-import net.minecraft.nbt.NBTTagCompound;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.nbt.NBTTagCompound;
 
 @SideOnly(Side.CLIENT)
 public class UI_Settings {

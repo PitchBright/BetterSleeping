@@ -2,9 +2,9 @@ package foxie.bettersleeping.compat;
 
 import cpw.mods.fml.common.Optional;
 import foxie.bettersleeping.BSLog;
+import foxie.bettersleeping.BSLog;
 import foxie.bettersleeping.Config;
 import foxie.bettersleeping.logic.Alarm;
-import foxie.bettersleeping.BSLog;
 import foxie.bettersleeping.logic.Alarm;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;

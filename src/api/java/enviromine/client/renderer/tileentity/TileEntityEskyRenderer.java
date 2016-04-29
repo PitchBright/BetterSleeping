@@ -1,17 +1,15 @@
 package enviromine.client.renderer.tileentity;
 
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
+import enviromine.blocks.tiles.TileEntityEsky;
 import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-
-import enviromine.blocks.tiles.TileEntityEsky;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityEskyRenderer extends TileEntitySpecialRenderer

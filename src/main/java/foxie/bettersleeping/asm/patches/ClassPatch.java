@@ -1,13 +1,14 @@
 package foxie.bettersleeping.asm.patches;
 
-import foxie.bettersleeping.asm.MethodToPatch;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 
-import java.util.HashSet;
-import java.util.Set;
+import foxie.bettersleeping.asm.MethodToPatch;
 
 public abstract class ClassPatch extends ClassVisitor {
 

@@ -1,25 +1,25 @@
 package foxie.bettersleeping.logic;
 
+import java.util.List;
+
 import cpw.mods.fml.common.gameevent.TickEvent;
-import foxie.bettersleeping.Config;
 import cz.ondraster.bettersleeping.api.BetterSleepingAPI;
+import cz.ondraster.bettersleeping.api.BetterSleepingAPI;
+import cz.ondraster.bettersleeping.api.PlayerData;
 import cz.ondraster.bettersleeping.api.PlayerData;
 import cz.ondraster.bettersleeping.api.PlayerDebuff;
 import cz.ondraster.bettersleeping.api.WorldSleepEvent;
+import cz.ondraster.bettersleeping.api.WorldSleepEvent;
+import foxie.bettersleeping.Config;
 import foxie.bettersleeping.client.gui.SleepOverlay;
 import foxie.bettersleeping.network.MessageUpdateTiredness;
 import foxie.bettersleeping.network.Network;
-import cz.ondraster.bettersleeping.api.BetterSleepingAPI;
-import cz.ondraster.bettersleeping.api.PlayerData;
-import cz.ondraster.bettersleeping.api.WorldSleepEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraftforge.common.MinecraftForge;
-
-import java.util.List;
 
 public class DebuffLogic {
 

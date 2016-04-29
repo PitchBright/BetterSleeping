@@ -1,11 +1,12 @@
 package enviromine.gases.types;
 
 import java.awt.Color;
+
+import enviromine.gases.EnviroGas;
+import enviromine.handlers.ObjectHandler;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import enviromine.gases.EnviroGas;
-import enviromine.handlers.ObjectHandler;
 
 public class GasHydrogenSulfide extends EnviroGas
 {

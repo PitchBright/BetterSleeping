@@ -1,11 +1,12 @@
 package enviromine.blocks;
 
 import java.util.Random;
+
+import enviromine.core.EnviroMine;
+import enviromine.handlers.EM_PhysManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
-import enviromine.core.EnviroMine;
-import enviromine.handlers.EM_PhysManager;
 
 public class BlockNoPhysics extends Block
 {

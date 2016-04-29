@@ -1,5 +1,7 @@
 package enviromine.gases;
 
+import org.apache.logging.log4j.Level;
+
 import enviromine.core.EnviroMine;
 import enviromine.gases.types.GasCarbonDioxide;
 import enviromine.gases.types.GasCarbonMonoxide;
@@ -9,7 +11,6 @@ import enviromine.gases.types.GasMethane;
 import enviromine.gases.types.GasNUKE;
 import enviromine.gases.types.GasNitrogenDioxide;
 import enviromine.gases.types.GasSulfurDioxide;
-import org.apache.logging.log4j.Level;
 
 public class EnviroGasDictionary
 {

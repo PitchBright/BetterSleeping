@@ -1,16 +1,16 @@
 package foxie.bettersleeping;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+import cz.ondraster.bettersleeping.api.ISavedDataProvider;
 import cz.ondraster.bettersleeping.api.ISavedDataProvider;
 import cz.ondraster.bettersleeping.api.PlayerData;
-import cz.ondraster.bettersleeping.api.ISavedDataProvider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.WorldSavedData;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 public class BSSavedData extends WorldSavedData implements ISavedDataProvider {
 

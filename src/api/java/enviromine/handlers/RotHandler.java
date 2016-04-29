@@ -1,5 +1,10 @@
 package enviromine.handlers;
 
+import org.apache.logging.log4j.Level;
+
+import enviromine.core.EM_Settings;
+import enviromine.core.EnviroMine;
+import enviromine.trackers.properties.RotProperties;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
@@ -7,10 +12,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import org.apache.logging.log4j.Level;
-import enviromine.core.EM_Settings;
-import enviromine.core.EnviroMine;
-import enviromine.trackers.properties.RotProperties;
 
 public class RotHandler
 {

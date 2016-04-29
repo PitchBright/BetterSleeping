@@ -3,14 +3,9 @@ package enviromine.world;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import net.minecraft.nbt.CompressedStreamTools;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
-import net.minecraft.world.WorldProvider;
-import net.minecraft.world.chunk.IChunkProvider;
+
 import org.apache.logging.log4j.Level;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import enviromine.core.EM_Settings;
@@ -18,6 +13,13 @@ import enviromine.core.EnviroMine;
 import enviromine.world.chunk.ChunkProviderCaves;
 import enviromine.world.chunk.WorldChunkManagerCaves;
 import enviromine.world.features.mineshaft.MineshaftBuilder;
+import net.minecraft.nbt.CompressedStreamTools;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
+import net.minecraft.world.WorldProvider;
+import net.minecraft.world.chunk.IChunkProvider;
 
 public class WorldProviderCaves extends WorldProvider
 {

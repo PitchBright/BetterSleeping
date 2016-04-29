@@ -3,8 +3,13 @@ package enviromine.world.chunk;
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SHROOM;
 import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.DUNGEON;
 import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.LAVA;
+
 import java.util.List;
 import java.util.Random;
+
+import cpw.mods.fml.common.eventhandler.Event.Result;
+import enviromine.core.EM_Settings;
+import enviromine.trackers.properties.CaveGenProperties;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
@@ -26,9 +31,6 @@ import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
-import cpw.mods.fml.common.eventhandler.Event.Result;
-import enviromine.core.EM_Settings;
-import enviromine.trackers.properties.CaveGenProperties;
 
 public class ChunkProviderCaves implements IChunkProvider
 {

@@ -1,6 +1,12 @@
 package enviromine.blocks;
 
 import java.util.Random;
+
+import enviromine.blocks.tiles.TileEntityGas;
+import enviromine.core.EM_Settings;
+import enviromine.gases.EnviroGasDictionary;
+import enviromine.handlers.EM_PhysManager;
+import enviromine.handlers.ObjectHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,11 +19,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import enviromine.blocks.tiles.TileEntityGas;
-import enviromine.core.EM_Settings;
-import enviromine.gases.EnviroGasDictionary;
-import enviromine.handlers.EM_PhysManager;
-import enviromine.handlers.ObjectHandler;
 
 public class BlockFlammableCoal extends BlockOre
 {

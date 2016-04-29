@@ -3,6 +3,16 @@ package enviromine.client.gui.menu.update;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import org.lwjgl.input.Mouse;
+
+import com.google.common.collect.Lists;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import enviromine.client.gui.UpdateNotification;
+import enviromine.core.EM_Settings;
+import enviromine.utils.RenderAssist;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiListExtended;
@@ -10,13 +20,6 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
-import org.lwjgl.input.Mouse;
-import com.google.common.collect.Lists;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import enviromine.client.gui.UpdateNotification;
-import enviromine.core.EM_Settings;
-import enviromine.utils.RenderAssist;
 
 @SideOnly(Side.CLIENT)
 public class PostGuiList extends GuiListExtended

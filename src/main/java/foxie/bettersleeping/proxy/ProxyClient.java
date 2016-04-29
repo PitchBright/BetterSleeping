@@ -7,8 +7,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import foxie.bettersleeping.Config;
 import foxie.bettersleeping.client.gui.SleepOverlay;
 import foxie.bettersleeping.client.renderer.AlarmRenderer;
-import foxie.bettersleeping.tileentity.TileEntityAlarm;
 import foxie.bettersleeping.client.renderer.AlarmRenderer;
+import foxie.bettersleeping.tileentity.TileEntityAlarm;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
 

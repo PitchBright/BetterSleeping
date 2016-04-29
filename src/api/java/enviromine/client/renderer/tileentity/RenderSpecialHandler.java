@@ -1,18 +1,22 @@
 package enviromine.client.renderer.tileentity;
 
 import java.util.HashMap;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
+
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import enviromine.blocks.tiles.TileEntityElevator;
+import enviromine.blocks.tiles.TileEntityEsky;
+import enviromine.blocks.tiles.TileEntityFreezer;
+import enviromine.handlers.ObjectHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import enviromine.blocks.tiles.*;
-import enviromine.handlers.ObjectHandler;
 
 @SideOnly(Side.CLIENT)
 public class RenderSpecialHandler implements ISimpleBlockRenderingHandler

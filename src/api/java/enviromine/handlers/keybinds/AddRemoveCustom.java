@@ -1,5 +1,12 @@
 package enviromine.handlers.keybinds;
 
+import org.apache.logging.log4j.Level;
+import org.lwjgl.input.Keyboard;
+
+import cpw.mods.fml.common.registry.EntityRegistry;
+import enviromine.core.EM_ConfigHandler;
+import enviromine.core.EnviroMine;
+import enviromine.utils.EnviroUtils;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -8,14 +15,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
-
-import org.apache.logging.log4j.Level;
-import org.lwjgl.input.Keyboard;
-
-import cpw.mods.fml.common.registry.EntityRegistry;
-import enviromine.core.EM_ConfigHandler;
-import enviromine.core.EnviroMine;
-import enviromine.utils.EnviroUtils;
 
 public class AddRemoveCustom
 {

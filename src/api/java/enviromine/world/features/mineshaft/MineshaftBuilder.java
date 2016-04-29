@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Random;
-import net.minecraft.block.material.Material;
-import net.minecraft.world.World;
+
 import org.apache.logging.log4j.Level;
+
 import enviromine.core.EM_Settings;
 import enviromine.core.EnviroMine;
 import enviromine.trackers.properties.DimensionProperties;
@@ -25,6 +25,8 @@ import enviromine.world.features.mineshaft.designers.MineDesignerComb;
 import enviromine.world.features.mineshaft.designers.MineDesignerFeather;
 import enviromine.world.features.mineshaft.designers.MineDesignerGrid;
 import enviromine.world.features.mineshaft.designers.MineDesignerRandomized;
+import net.minecraft.block.material.Material;
+import net.minecraft.world.World;
 
 public class MineshaftBuilder
 {

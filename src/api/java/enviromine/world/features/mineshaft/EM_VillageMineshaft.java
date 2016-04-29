@@ -1,5 +1,8 @@
 package enviromine.world.features.mineshaft;
 
+import java.util.List;
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityChest;
@@ -11,9 +14,6 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureMineshaftPieces;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
-import java.util.List;
-import java.util.Random;
-import enviromine.world.features.mineshaft.MineshaftBuilder;
 
 public class EM_VillageMineshaft extends StructureVillagePieces.Village
 {

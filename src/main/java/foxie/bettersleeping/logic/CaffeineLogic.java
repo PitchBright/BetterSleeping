@@ -1,18 +1,18 @@
 package foxie.bettersleeping.logic;
 
+import java.util.Arrays;
+import java.util.List;
+
+import cz.ondraster.bettersleeping.api.PlayerData;
+import cz.ondraster.bettersleeping.api.PlayerData;
 import foxie.bettersleeping.BSSavedData;
 import foxie.bettersleeping.Config;
-import cz.ondraster.bettersleeping.api.PlayerData;
-import cz.ondraster.bettersleeping.api.PlayerData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.oredict.OreDictionary;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class CaffeineLogic {
    public static DamageSource damageCaffeine = new DamageOverdose();

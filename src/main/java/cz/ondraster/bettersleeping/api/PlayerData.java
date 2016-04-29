@@ -6,6 +6,8 @@ public class PlayerData {
    private double caffeineCounter = 0;
    private double pillCounter = 0;
    private long sleepCounter = Integer.MAX_VALUE;
+   private long ticksAtLogOff = 0;
+   private long dayTicksAtLogOff = 0;
 
    /**
     * INTERNAL VALUES! Only used for syncing to the client, do not touch these!
@@ -37,12 +39,16 @@ public class PlayerData {
       sleepCounter = compound.getLong("sleepCounter");
       caffeineCounter = compound.getDouble("caffeineCounter");
       pillCounter = compound.getDouble("pillCounter");
+      ticksAtLogOff = compound.getLong("ticksAtLogOff");
+      dayTicksAtLogOff = compound.getLong("dayTicksAtLogOff");
    }
 
    public void writeToNBT(NBTTagCompound compound) {
       compound.setLong("sleepCounter", sleepCounter);
       compound.setDouble("caffeineCounter", caffeineCounter);
       compound.setDouble("pillCounter", pillCounter);
+      compound.setLong("ticksAtLogOff", ticksAtLogOff);
+      compound.setLong("dayTicksAtLogOff", dayTicksAtLogOff);
    }
 
    public void increaseSleeplevel() {
@@ -62,11 +68,18 @@ public class PlayerData {
       if (this.sleepCounter < 0)
          this.sleepCounter = 0;
    }
+   
+   public void setSleepLevel(long amount)
+   {
+	   this.sleepCounter = Math.min(amount, 0);
+   }
 
    public void reset(long amount) {
       this.sleepCounter = amount;
       caffeineCounter = 0;
       pillCounter = 0;
+      ticksAtLogOff = 0;
+      dayTicksAtLogOff = 0;
    }
 
    public long getSleepLevel() {
@@ -79,6 +92,16 @@ public class PlayerData {
 
    public double getPillLevel() {
       return pillCounter;
+   }
+  
+   public long getTicksSinceLastLogOff()
+   {
+	   return ticksAtLogOff;
+   }
+   
+   public long getDayTicksAtLastLogOff()
+   {
+	   return dayTicksAtLogOff;
    }
 
    public void decreaseCaffeineLevel(double amount) {
@@ -111,5 +134,11 @@ public class PlayerData {
 
    public void increasePillLevel() {
       increaseCaffeineLevel(1);
+   }
+   
+   public void setLoggedOff(long allTicks, long dayTicks)
+   {
+	   ticksAtLogOff = allTicks;
+	   dayTicksAtLogOff = dayTicks;
    }
 }

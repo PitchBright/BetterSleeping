@@ -1,13 +1,14 @@
 package enviromine.handlers.crafting;
 
 import java.util.ArrayList;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
+import enviromine.handlers.ObjectHandler;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent;
-import enviromine.handlers.ObjectHandler;
 
 public class GaskMaskRefillHandler implements IRecipe
 {

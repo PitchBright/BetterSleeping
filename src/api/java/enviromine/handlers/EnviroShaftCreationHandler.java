@@ -1,10 +1,11 @@
 package enviromine.handlers;
 
-import net.minecraft.world.gen.structure.StructureVillagePieces;
-import cpw.mods.fml.common.registry.VillagerRegistry.IVillageCreationHandler;
-import enviromine.world.features.mineshaft.EM_VillageMineshaft;
 import java.util.List;
 import java.util.Random;
+
+import cpw.mods.fml.common.registry.VillagerRegistry.IVillageCreationHandler;
+import enviromine.world.features.mineshaft.EM_VillageMineshaft;
+import net.minecraft.world.gen.structure.StructureVillagePieces;
 
 public class EnviroShaftCreationHandler implements IVillageCreationHandler
 {

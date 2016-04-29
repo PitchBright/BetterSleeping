@@ -1,7 +1,6 @@
 package enviromine.core;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -9,12 +8,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.potion.Potion;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
 
 import org.apache.logging.log4j.Level;
 
@@ -30,6 +23,11 @@ import enviromine.trackers.properties.ItemProperties;
 import enviromine.trackers.properties.RotProperties;
 import enviromine.trackers.properties.StabilityType;
 import enviromine.trackers.properties.helpers.PropertyBase;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.potion.Potion;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 
 public class EM_ConfigHandler
 {

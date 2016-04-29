@@ -3,12 +3,14 @@ package enviromine.trackers.properties;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
-import net.minecraftforge.common.config.Configuration;
+
 import org.apache.logging.log4j.Level;
+
 import enviromine.core.EM_ConfigHandler;
 import enviromine.core.EM_Settings;
 import enviromine.core.EnviroMine;
 import enviromine.trackers.properties.helpers.PropertyBase;
+import net.minecraftforge.common.config.Configuration;
 
 public class StabilityType implements PropertyBase
 {

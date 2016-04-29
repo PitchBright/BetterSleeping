@@ -4,11 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.World;
-
 import org.apache.logging.log4j.Level;
 
 import com.google.common.base.Stopwatch;
@@ -19,6 +14,10 @@ import enviromine.core.EM_Settings;
 import enviromine.core.EnviroMine;
 import enviromine.handlers.EM_PhysManager;
 import enviromine.handlers.ObjectHandler;
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.World;
 
 /**
  * @author Funwayguy

@@ -14,14 +14,16 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
-import net.minecraft.util.StatCollector;
+
 import org.apache.logging.log4j.Level;
+
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModContainer;
 import enviromine.EnviroPotion;
 import enviromine.client.gui.EM_GuiAuthWarn;
 import enviromine.utils.ClassEnumerator;
 import enviromine.utils.LockedClass;
+import net.minecraft.util.StatCollector;
 
 /**
  * Controls authentication and unlocking of all classes in the mod. If a private method in this class is called through reflection it WILL intentionally crash

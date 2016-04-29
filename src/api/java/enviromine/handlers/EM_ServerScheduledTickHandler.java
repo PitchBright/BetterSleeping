@@ -1,7 +1,5 @@
 package enviromine.handlers;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.util.MathHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
@@ -14,6 +12,8 @@ import enviromine.client.gui.hud.HUDRegistry;
 import enviromine.core.EM_Settings;
 import enviromine.gases.GasBuffer;
 import enviromine.world.Earthquake;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.MathHelper;
 
 public class EM_ServerScheduledTickHandler
 {

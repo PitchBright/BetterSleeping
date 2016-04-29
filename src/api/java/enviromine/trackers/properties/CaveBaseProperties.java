@@ -1,12 +1,14 @@
 package enviromine.trackers.properties;
 
 import java.io.File;
+
 import org.apache.logging.log4j.Level;
-import net.minecraftforge.common.config.Configuration;
+
 import enviromine.core.EM_ConfigHandler;
 import enviromine.core.EM_Settings;
 import enviromine.core.EnviroMine;
 import enviromine.trackers.properties.helpers.PropertyBase;
+import net.minecraftforge.common.config.Configuration;
 
 public class CaveBaseProperties implements PropertyBase
 {

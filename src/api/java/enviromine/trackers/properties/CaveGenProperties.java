@@ -3,17 +3,19 @@ package enviromine.trackers.properties;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.MathHelper;
-import net.minecraftforge.common.config.Configuration;
+
 import org.apache.logging.log4j.Level;
+
 import enviromine.core.EM_ConfigHandler;
 import enviromine.core.EM_Settings;
 import enviromine.core.EnviroMine;
 import enviromine.handlers.ObjectHandler;
 import enviromine.trackers.properties.helpers.PropertyBase;
 import enviromine.utils.EnviroUtils;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.MathHelper;
+import net.minecraftforge.common.config.Configuration;
 
 public class CaveGenProperties implements PropertyBase
 {

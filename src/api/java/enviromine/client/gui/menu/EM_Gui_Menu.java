@@ -3,14 +3,6 @@ package enviromine.client.gui.menu;
 import java.awt.Desktop;
 import java.net.URI;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.GuiYesNo;
-import net.minecraft.client.gui.GuiYesNoCallback;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.StatCollector;
-
 import org.apache.logging.log4j.Level;
 
 import cpw.mods.fml.relauncher.Side;
@@ -19,6 +11,13 @@ import enviromine.client.gui.UpdateNotification;
 import enviromine.client.gui.menu.config.EM_ConfigMenu;
 import enviromine.client.gui.menu.update.NewsPage;
 import enviromine.core.EnviroMine;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiYesNo;
+import net.minecraft.client.gui.GuiYesNoCallback;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.StatCollector;
 
 
 @SideOnly(Side.CLIENT)

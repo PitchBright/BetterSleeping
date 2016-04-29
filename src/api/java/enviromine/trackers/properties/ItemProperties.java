@@ -5,6 +5,12 @@ import java.util.Iterator;
 
 import org.apache.logging.log4j.Level;
 
+import enviromine.core.EM_ConfigHandler;
+import enviromine.core.EM_Settings;
+import enviromine.core.EnviroMine;
+import enviromine.trackers.properties.helpers.PropertyBase;
+import enviromine.trackers.properties.helpers.SerialisableProperty;
+import enviromine.utils.EnviroUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockFlower;
@@ -17,12 +23,6 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.config.Configuration;
-import enviromine.core.EM_ConfigHandler;
-import enviromine.core.EM_Settings;
-import enviromine.core.EnviroMine;
-import enviromine.trackers.properties.helpers.PropertyBase;
-import enviromine.trackers.properties.helpers.SerialisableProperty;
-import enviromine.utils.EnviroUtils;
 
 public class ItemProperties implements SerialisableProperty, PropertyBase
 {

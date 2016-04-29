@@ -1,0 +1,52 @@
+[00:24:00] [main/INFO]: Setting user: Player139
+[00:24:01] [Client thread/INFO]: LWJGL Version: 2.9.1
+[00:24:05] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:EnviroMine, FMLFileResourcePack:Better Sleeping
+[00:24:06] [Sound Library Loader/INFO]: Sound engine started
+[00:24:07] [Client thread/INFO]: Created: 16x16 textures/blocks-atlas
+[00:24:07] [Client thread/INFO]: Created: 16x16 textures/items-atlas
+[00:24:08] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:EnviroMine, FMLFileResourcePack:Better Sleeping
+[00:24:08] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[00:24:08] [Client thread/INFO]: Created: 256x256 textures/items-atlas
+[00:24:09] [Sound Library Loader/INFO]: Sound engine started
+[00:25:10] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
+[00:25:10] [Server thread/INFO]: Generating keypair
+[00:25:10] [Server thread/INFO]: Converting map!
+[00:25:10] [Server thread/INFO]: Scanning folders...
+[00:25:10] [Server thread/INFO]: Total conversion count is 0
+[00:25:11] [Server thread/INFO]: Preparing start region for level 0
+[00:25:12] [Server thread/INFO]: Preparing spawn area: 5%
+[00:25:13] [Server thread/INFO]: Preparing spawn area: 15%
+[00:25:14] [Server thread/INFO]: Preparing spawn area: 28%
+[00:25:15] [Server thread/INFO]: Preparing spawn area: 44%
+[00:25:16] [Server thread/INFO]: Preparing spawn area: 62%
+[00:25:17] [Server thread/INFO]: Preparing spawn area: 80%
+[00:25:18] [Server thread/INFO]: Changing view distance to 12, from 10
+[00:25:18] [Server thread/INFO]: Player139[local:E:38858fa7] logged in with entity id 259 at (21.5, 69.0, 255.5)
+[00:25:18] [Server thread/INFO]: Player139 joined the game
+[00:25:20] [Server thread/INFO]: Saving and pausing game...
+[00:25:20] [Server thread/INFO]: Saving chunks for level 'test'/Overworld
+[00:25:22] [Server thread/INFO]: Saving chunks for level 'test'/Nether
+[00:25:22] [Server thread/INFO]: Saving chunks for level 'test'/The End
+[00:25:22] [Server thread/INFO]: Saving chunks for level 'test'/Caves
+[00:25:22] [Server thread/WARN]: Can't keep up! Did the system time change, or is the server overloaded? Running 2063ms behind, skipping 41 tick(s)
+[00:25:26] [Client thread/INFO]: [CHAT] §cTHIS COPY OF ENIVROMINE IS NOT FOR PUBLIC USE!
+[00:25:32] [Server thread/INFO]: Player139 has just earned the achievement [Taking Inventory]
+[00:25:32] [Client thread/INFO]: [CHAT] Player139 has just earned the achievement [Taking Inventory]
+[00:25:44] [Server thread/INFO]: Saving and pausing game...
+[00:25:44] [Server thread/INFO]: Saving chunks for level 'test'/Overworld
+[00:25:44] [Server thread/INFO]: Saving chunks for level 'test'/Nether
+[00:25:44] [Server thread/INFO]: Saving chunks for level 'test'/The End
+[00:25:44] [Server thread/INFO]: Saving chunks for level 'test'/Caves
+[00:25:56] [Server thread/INFO]: Saving and pausing game...
+[00:25:56] [Server thread/INFO]: Saving chunks for level 'test'/Overworld
+[00:25:56] [Server thread/INFO]: Saving chunks for level 'test'/Nether
+[00:25:56] [Server thread/INFO]: Saving chunks for level 'test'/The End
+[00:25:56] [Server thread/INFO]: Saving chunks for level 'test'/Caves
+[00:25:56] [Server thread/INFO]: Stopping server
+[00:25:56] [Server thread/INFO]: Saving players
+[00:25:56] [Server thread/INFO]: Saving worlds
+[00:25:56] [Server thread/INFO]: Saving chunks for level 'test'/Overworld
+[00:25:56] [Server thread/INFO]: Saving chunks for level 'test'/Nether
+[00:25:56] [Server thread/INFO]: Saving chunks for level 'test'/The End
+[00:25:56] [Server thread/INFO]: Saving chunks for level 'test'/Caves
+[00:26:07] [Client thread/INFO]: Stopping!

@@ -1,9 +1,9 @@
 package enviromine.client.gui.hud;
 
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ResourceLocation;
 import enviromine.client.gui.UI_Settings;
 import enviromine.utils.Alignment;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 
 /**
  * 

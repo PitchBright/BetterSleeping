@@ -1,15 +1,16 @@
 package enviromine.core.commands;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import enviromine.handlers.EM_StatusManager;
+import enviromine.trackers.EnviroDataTracker;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.StatCollector;
-import enviromine.handlers.EM_StatusManager;
-import enviromine.trackers.EnviroDataTracker;
-import java.util.ArrayList;
-import java.util.List;
 
 public class EnviroCommand extends CommandBase
 {

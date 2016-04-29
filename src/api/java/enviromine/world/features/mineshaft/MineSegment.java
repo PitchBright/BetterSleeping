@@ -1,6 +1,12 @@
 package enviromine.world.features.mineshaft;
 
 import static net.minecraftforge.common.ChestGenHooks.DUNGEON_CHEST;
+
+import java.util.ArrayList;
+
+import org.apache.logging.log4j.Level;
+
+import enviromine.core.EnviroMine;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -8,9 +14,6 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
-import enviromine.core.EnviroMine;
-import java.util.ArrayList;
-import org.apache.logging.log4j.Level;
 
 public abstract class MineSegment
 {

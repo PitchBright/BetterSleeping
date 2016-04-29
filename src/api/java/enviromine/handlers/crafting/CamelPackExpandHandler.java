@@ -1,12 +1,11 @@
 package enviromine.handlers.crafting;
 
+import enviromine.handlers.ObjectHandler;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-
-import enviromine.handlers.ObjectHandler;
 
 public class CamelPackExpandHandler implements IRecipe
 {

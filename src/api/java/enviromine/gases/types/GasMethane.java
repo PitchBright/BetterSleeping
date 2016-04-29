@@ -1,6 +1,7 @@
 package enviromine.gases.types;
 
 import java.awt.Color;
+
 import enviromine.gases.EnviroGas;
 
 public class GasMethane extends EnviroGas

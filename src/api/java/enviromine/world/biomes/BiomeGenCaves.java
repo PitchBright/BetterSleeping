@@ -1,12 +1,13 @@
 package enviromine.world.biomes;
 
 import java.util.Iterator;
+
+import enviromine.core.EM_Settings;
+import enviromine.trackers.properties.CaveSpawnProperties;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.biome.BiomeGenBase;
-import enviromine.core.EM_Settings;
-import enviromine.trackers.properties.CaveSpawnProperties;
 
 public class BiomeGenCaves extends BiomeGenBase
 {

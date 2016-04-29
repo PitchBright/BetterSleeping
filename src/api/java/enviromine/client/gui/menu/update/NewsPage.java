@@ -2,11 +2,11 @@ package enviromine.client.gui.menu.update;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import enviromine.client.gui.SaveController;
+import enviromine.client.gui.UpdateNotification;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.StatCollector;
-import enviromine.client.gui.SaveController;
-import enviromine.client.gui.UpdateNotification;
 
 @SideOnly(Side.CLIENT)
 public class NewsPage  extends GuiScreen{

@@ -2,8 +2,8 @@ package foxie.bettersleeping.block;
 
 import foxie.bettersleeping.BetterSleeping;
 import foxie.bettersleeping.client.gui.GuiHandlers;
-import foxie.bettersleeping.tileentity.TileEntityAlarm;
 import foxie.bettersleeping.client.gui.GuiHandlers;
+import foxie.bettersleeping.tileentity.TileEntityAlarm;
 import foxie.bettersleeping.tileentity.TileEntityAlarm;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
