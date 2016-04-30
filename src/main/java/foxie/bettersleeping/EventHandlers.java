@@ -86,11 +86,11 @@ public class EventHandlers {
 		data = BSSavedData.instance().getData(event.player);
 		  
 //		  long bedTime = data.getDayTicksAtLastLogOff() + (data.getSleepLevel() - 6000);
-		long bedTime = (event.player.worldObj.getWorldTime() % 24000) + (data.getSleepLevel() - 6000);
-		long wakeTime = ((event.player.worldObj.getWorldTime() % 24000) + ((24000 - data.getSleepLevel()) / 3) % 24000);
-		long logTime = (data.getDayTicksAtLastLogOff() % 24000);
-		long curTime = (event.player.worldObj.getWorldTime() % 24000);
-		  BSLog.info("Curr: %d, Enr: %d, Log: %d, Bed: %d, Wake: %d", curTime, data.getSleepLevel(), logTime, bedTime, wakeTime);
+//		long bedTime = (((event.player.worldObj.getWorldTime() % 24000) + ((data.getSleepLevel() - 6000) % 24000)) % 24000);
+//		long wakeTime = ((event.player.worldObj.getWorldTime() % 24000) + (((24000 - data.getSleepLevel()) / 3) % 24000));
+//		long logTime = (data.getDayTicksAtLastLogOff() % 24000);
+//		long curTime = (event.player.worldObj.getWorldTime() % 24000);
+//		  BSLog.info("Curr: %d, Enr: %d, Log: %d, Bed: %d, Wake: %d", curTime, data.getSleepLevel(), logTime, bedTime, wakeTime);
 		
 		
 		if (Config.enableSleepCounter) {
@@ -186,64 +186,105 @@ public class EventHandlers {
 		
 		PlayerData data = BSSavedData.instance().getData(event.player);
 		
-		long totalTicksLoggedOff = event.player.worldObj.getTotalWorldTime() - data.getTicksSinceLastLogOff();
-		data.decreaseCaffeineLevel(totalTicksLoggedOff * Config.caffeinePerTick);
+		long missedTime = event.player.worldObj.getTotalWorldTime() - data.getTicksSinceLastLogOff();
+		long missedTime24 = (event.player.worldObj.getWorldTime() - data.getTicksSinceLastLogOff()) % 24000;
+		long energy = data.getSleepLevel();
+		long curTime = (event.player.worldObj.getWorldTime() % 24000);
+		long logTime = (data.getDayTicksAtLastLogOff() % 24000);
+//		long bedTime = ((curTime + (energy - 6000)) % 24000);
+//		long wakeTime = ((curTime + ((24000 - energy) / 3)) % 24000);
+		long bedTime = data.getBedTime();
+		long wakeTime = data.getWakeTime();
+
+		data.decreaseCaffeineLevel(missedTime * Config.caffeinePerTick);
 		
-		long bedTime = event.player.worldObj.getWorldTime() + (data.getSleepLevel() - 6000);
-		long wakeTime = (event.player.worldObj.getWorldTime() + ((24000 - data.getSleepLevel()) / 3) % 24000);
-		long logTime = data.getDayTicksAtLastLogOff() % 24000;
-		long curTime = event.player.worldObj.getWorldTime() % 24000;
+
+		BSLog.info("LOGIN - Curr: %d, Miss24: %d, Enr: %d, Log: %d, Bed: %d, Wake: %d", curTime, missedTime24, energy, logTime, bedTime, wakeTime);
 		
-		
-		if(curTime > logTime)
-		{
-			if(curTime < bedTime)
-			{
-				data.decreaseSleepLevel((long) (curTime - logTime));
-			}
-			else
-			{
-				if(curTime < wakeTime)
-				{
-					data.setSleepLevel((long) (curTime - bedTime) * 3);
-				}
-				else
-				{
-					data.setSleepLevel((24000 - (curTime - wakeTime)));
-				}
-			}
+		if (energy - missedTime24 > 6000){
+			data.decreaseSleepLevel((long) (curTime - logTime));
+			System.out.println("Scenario 1.1");
 		}
 		else
-		{
-			if(curTime > wakeTime)
-			{
-				data.increaseSleepLevel(logTime - curTime);
-			}
-			else
-			{
-				if(curTime > bedTime)
-				{
-					data.setSleepLevel(24000 - (wakeTime - curTime) *3);
-				}
-				else
-				{
-					data.setSleepLevel(6000 + (bedTime - curTime));
-				}
-			}
+		{		
+			if (energy - missedTime24 > 0){
+				data.setSleepLevel((long) (6000 + ((6000 - (energy - missedTime24)) * 3)));
+				System.out.println("Scenario 2.1 Past BedTime:" + (6000 - (energy - missedTime24)));
 		}
+			data.setSleepLevel((long) (24000 + (energy - missedTime24)));
+			System.out.println("Scenario 2.2 Past WakeTime:" + (0 - (energy - missedTime24)));
+	}
+		
+//		if(curTime > logTime)
+//		{
+//			if(curTime < bedTime)
+//			{
+//				data.decreaseSleepLevel((long) (curTime - logTime));
+//				System.out.println("Scenario 1.1.1");
+//			}
+//			else
+//			{
+//				if(curTime < wakeTime)
+//				{
+//					data.setSleepLevel((long) (curTime - bedTime) * 3);
+//					System.out.println("Scenario 1.2.1");
+//				}
+//				else
+//				{
+//					data.setSleepLevel((24000 - (curTime - wakeTime)));
+//					System.out.println("Scenario 1.2.2");
+//				}
+//			}
+//		}
+//		else
+//		{
+//			if(curTime > wakeTime)
+//			{
+//				data.increaseSleepLevel(logTime - curTime);
+//				System.out.println("Scenario 2.1.1");
+//			}
+//			else
+//			{
+//				if(curTime > bedTime)
+//				{
+//					data.setSleepLevel(24000 - (wakeTime - curTime) * 3);
+//					System.out.println("Scenario 2.2.1");
+//				}
+//				else
+//				{
+//					data.setSleepLevel(6000 + (bedTime - curTime));
+//					System.out.println("Scenario 2.2.2");
+//				}
+//			}
+//		}
+
+//		long energy2 = data.getSleepLevel();
+//		  BSLog.info("LOGIN - Curr: %d, Enr2: %d, Log: %d, Bed: %d, Wake: %d", curTime, energy2, logTime, bedTime, wakeTime);
 	}
 	
 	@SubscribeEvent
 	public void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
+
+		PlayerData data = BSSavedData.instance().getData(event.player);
+		
+		long energy = data.getSleepLevel();
+		long curTime = (event.player.worldObj.getWorldTime() % 24000);
+		long logTime = (data.getDayTicksAtLastLogOff() % 24000);
+		long bedTime = ((curTime + (energy - 6000)) % 24000);
+//		long wakeTime = ((curTime + ((24000 - energy) / 3)) % 24000);
+		long wakeTime = ((bedTime + 6000) % 24000);
+		
 		if (event.player.worldObj == null)
 			return;
 
 		if (event.player.worldObj.isRemote)
 			return;
-
-		PlayerData data = BSSavedData.instance().getData(event.player);
 		
-		data.setLoggedOff(event.player.worldObj.getTotalWorldTime(), event.player.worldObj.getWorldTime());
+//		data.setLoggedOff(event.player.worldObj.getTotalWorldTime(), event.player.worldObj.getWorldTime(), bedTime, wakeTime);
+		data.setLoggedOff(event.player.worldObj.getWorldTime(), event.player.worldObj.getWorldTime(), bedTime, wakeTime);
+		
+
+		  BSLog.info("LOGOUT - Curr: %d, Enr: %d, Log: %d, Bed: %d, Wake: %d", curTime, energy, logTime, bedTime, wakeTime);
 		
 		if (Config.percentPeopleToSleep > 1)
 			return;

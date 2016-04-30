@@ -8,6 +8,8 @@ public class PlayerData {
    private long sleepCounter = Integer.MAX_VALUE;
    private long ticksAtLogOff = 0;
    private long dayTicksAtLogOff = 0;
+   private long bedTime = 0;
+   private long wakeTime = 0;
 
    /**
     * INTERNAL VALUES! Only used for syncing to the client, do not touch these!
@@ -41,6 +43,8 @@ public class PlayerData {
       pillCounter = compound.getDouble("pillCounter");
       ticksAtLogOff = compound.getLong("ticksAtLogOff");
       dayTicksAtLogOff = compound.getLong("dayTicksAtLogOff");
+      bedTime = compound.getLong("bedTime");
+      wakeTime = compound.getLong("wakeTime");
    }
 
    public void writeToNBT(NBTTagCompound compound) {
@@ -49,6 +53,8 @@ public class PlayerData {
       compound.setDouble("pillCounter", pillCounter);
       compound.setLong("ticksAtLogOff", ticksAtLogOff);
       compound.setLong("dayTicksAtLogOff", dayTicksAtLogOff);
+      compound.setLong("bedTime", bedTime);
+      compound.setLong("wakeTime", wakeTime);
    }
 
    public void increaseSleeplevel() {
@@ -71,7 +77,7 @@ public class PlayerData {
    
    public void setSleepLevel(long amount)
    {
-	   this.sleepCounter = Math.min(amount, 0);
+	   this.sleepCounter = Math.max(amount, 0);
    }
 
    public void reset(long amount) {
@@ -80,6 +86,8 @@ public class PlayerData {
       pillCounter = 0;
       ticksAtLogOff = 0;
       dayTicksAtLogOff = 0;
+      bedTime = 0;
+      wakeTime = 0;
    }
 
    public long getSleepLevel() {
@@ -102,6 +110,16 @@ public class PlayerData {
    public long getDayTicksAtLastLogOff()
    {
 	   return dayTicksAtLogOff;
+   }
+   
+   public long getBedTime()
+   {
+	   return bedTime;
+   }
+   
+   public long getWakeTime()
+   {
+	   return wakeTime;
    }
 
    public void decreaseCaffeineLevel(double amount) {
@@ -136,9 +154,11 @@ public class PlayerData {
       increaseCaffeineLevel(1);
    }
    
-   public void setLoggedOff(long allTicks, long dayTicks)
+   public void setLoggedOff(long allTicks, long dayTicks, long bedTicks, long wakeTicks)
    {
 	   ticksAtLogOff = allTicks;
 	   dayTicksAtLogOff = dayTicks;
+	   bedTime = bedTicks;
+	   wakeTime = wakeTicks;
    }
 }
