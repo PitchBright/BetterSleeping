@@ -242,7 +242,7 @@ public class EventHandlers {
 		data.setLoggedOff(event.player.worldObj.getWorldTime(), event.player.worldObj.getWorldTime()); //doesn't work with Total-World-Time
 		
 
-		  BSLog.info("LOGOUT - Curr: %d, Enr: %d, Log: %d, Bed: %d, Wake: %d", curTime, energy, logTime, bedTime, wakeTime);
+//		  BSLog.info("LOGOUT - Curr: %d, Enr: %d, Log: %d, Bed: %d, Wake: %d", curTime, energy, logTime, bedTime, wakeTime);
 		
 		if (Config.percentPeopleToSleep > 1)
 			return;
