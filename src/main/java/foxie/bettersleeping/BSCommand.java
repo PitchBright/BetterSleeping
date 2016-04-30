@@ -91,7 +91,7 @@ public class BSCommand extends CommandBase
 			
 			try
 			{
-				m_worldTime.set(getWorld(), number);
+				m_worldTime.set(getWorld().getWorldInfo(), number);
 				getWorld().setWorldTime(number % 24000);
 			} catch(Exception e)
 			{
