@@ -199,7 +199,8 @@ public class EventHandlers {
 
 		data.decreaseCaffeineLevel(missedTime * Config.caffeinePerTick);
 		
-
+		
+		
 //		BSLog.info("LOGIN - Curr: %d, Miss24: %d, Enr: %d, Log: %d, Bed: %d, Wake: %d", curTime, missedTime24, energy, logTime, bedTime, wakeTime);
 		
 		if (energy - missedTime24 > 6000){
@@ -217,7 +218,17 @@ public class EventHandlers {
 //			System.out.println("Scenario 2.2 Player joins past WakeTime:" + (0 - (energy - missedTime24)));
 			}
 	   }
-		missedTime24 = 0;
+		
+		float heartsToGive = 0;
+		
+		long completeCycles = (missedTime / 24) - 1;
+		
+		if(completeCycles > 0)
+		{
+			heartsToGive += completeCycles;
+		}
+		
+		event.player.heal(heartsToGive);
 		
 	}
 	

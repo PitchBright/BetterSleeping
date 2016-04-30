@@ -66,6 +66,10 @@ public class BSCommand extends CommandBase
 		{
 			data.decreaseSleepLevel(number);
 		}
+		else if(args[0].equals("addworld"))
+		{
+			sender.getEntityWorld().getWorldInfo().incrementTotalWorldTime(number);
+		}
 		
 		sender.addChatMessage(new ChatComponentText("Sleep level is now " + data.getSleepLevel()));
 	}
