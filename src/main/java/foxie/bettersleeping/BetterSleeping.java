@@ -62,6 +62,7 @@ public class BetterSleeping {
    public void serverLoad(FMLServerStartingEvent event)
    {
 	   event.registerServerCommand(new BSCommand());
+	   event.registerServerCommand(new CommandWordTime());
    }
    
    @EventHandler
