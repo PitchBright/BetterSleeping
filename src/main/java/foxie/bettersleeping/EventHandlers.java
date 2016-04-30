@@ -210,6 +210,8 @@ public class EventHandlers
 
 		float heartsToGive = 0;
 
+		long completeCycles = (missedTime / 24000) - 1;
+		
 		// BSLog.info("LOGIN - Curr: %d, Miss24: %d, Enr: %d, Log: %d, Bed: %d,
 		// Wake: %d", curTime, missedTime24, energy, logTime, bedTime,
 		// wakeTime);
@@ -225,24 +227,26 @@ public class EventHandlers
 			if(energy - missedTime24 > 0)
 			{
 				data.setSleepLevel((long) (6000 + ((6000 - (energy - missedTime24)) * 3)));
-				heartsToGive++;
 				// System.out.println("Scenario 2.1 Player joins during
 				// BedTime:" + (6000 - (energy - missedTime24)));
 			}
 			else
 			{
 				data.setSleepLevel((long) (24000 + (energy - missedTime24)));
+				heartsToGive++;
+				completeCycles++;
 				// System.out.println("Scenario 2.2 Player joins past WakeTime:"
 				// + (0 - (energy - missedTime24)));
 			}
 		}
 
-		long completeCycles = (missedTime / 24000) - 1;
 
 		if(completeCycles > 0)
 		{
 			heartsToGive += completeCycles;
 		}
+		
+		System.out.println("--------------- Hearts: " + heartsToGive + " Cycles: " + completeCycles + " WorldTime: " + event.player.worldObj.getTotalWorldTime() + " Ticks: " + data.getTicksSinceLastLogOff() + " Missed: " + missedTime);
 
 		event.player.heal(heartsToGive);
 
