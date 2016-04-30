@@ -187,19 +187,20 @@ public class EventHandlers {
 		PlayerData data = BSSavedData.instance().getData(event.player);
 		
 		long missedTime = event.player.worldObj.getTotalWorldTime() - data.getTicksSinceLastLogOff();
-		long missedTime24 = (event.player.worldObj.getWorldTime() - data.getTicksSinceLastLogOff()) % 24000;
+		long missedTime24 = (event.player.worldObj.getWorldTime() - data.getDayTicksAtLastLogOff()) % 24000;
+		
 		long energy = data.getSleepLevel();
-		long curTime = (event.player.worldObj.getWorldTime() % 24000);
-		long logTime = (data.getDayTicksAtLastLogOff() % 24000);
-		long bedTime = ((curTime + (energy - 6000)) % 24000);
-		long wakeTime = ((curTime + ((24000 - energy) / 3)) % 24000);
+//		long curTime = (event.player.worldObj.getWorldTime() % 24000);
+//		long logTime = (data.getDayTicksAtLastLogOff() % 24000);
+//		long bedTime = ((curTime + (energy - 6000)) % 24000);
+//		long wakeTime = ((curTime + ((24000 - energy) / 3)) % 24000);
 //		long bedTime = data.getBedTime();
 //		long wakeTime = data.getWakeTime();
 
 		data.decreaseCaffeineLevel(missedTime * Config.caffeinePerTick);
 		
 
-		BSLog.info("LOGIN - Curr: %d, Miss24: %d, Enr: %d, Log: %d, Bed: %d, Wake: %d", curTime, missedTime24, energy, logTime, bedTime, wakeTime);
+//		BSLog.info("LOGIN - Curr: %d, Miss24: %d, Enr: %d, Log: %d, Bed: %d, Wake: %d", curTime, missedTime24, energy, logTime, bedTime, wakeTime);
 		
 		if (energy - missedTime24 > 6000){
 			data.setSleepLevel((long) (energy - missedTime24));
@@ -226,10 +227,10 @@ public class EventHandlers {
 		PlayerData data = BSSavedData.instance().getData(event.player);
 		
 		long energy = data.getSleepLevel();
-		long curTime = (event.player.worldObj.getWorldTime() % 24000);
-		long logTime = (data.getDayTicksAtLastLogOff() % 24000);
-		long bedTime = ((curTime + (energy - 6000)) % 24000);
-		long wakeTime = ((curTime + ((24000 - energy) / 3)) % 24000);
+//		long curTime = (event.player.worldObj.getWorldTime() % 24000);
+//		long logTime = (data.getDayTicksAtLastLogOff() % 24000);
+//		long bedTime = ((curTime + (energy - 6000)) % 24000);
+//		long wakeTime = ((curTime + ((24000 - energy) / 3)) % 24000);
 //		long wakeTime = ((bedTime + 6000) % 24000);
 		
 		if (event.player.worldObj == null)
@@ -238,8 +239,8 @@ public class EventHandlers {
 		if (event.player.worldObj.isRemote)
 			return;
 		
-//		data.setLoggedOff(event.player.worldObj.getTotalWorldTime(), event.player.worldObj.getWorldTime()); // CAFFEINE NEEDS TOTAL-WORLD-TIME
-		data.setLoggedOff(event.player.worldObj.getWorldTime(), event.player.worldObj.getWorldTime()); //doesn't work with Total-World-Time
+		data.setLoggedOff(event.player.worldObj.getTotalWorldTime(), event.player.worldObj.getWorldTime()); // CAFFEINE NEEDS TOTAL-WORLD-TIME
+//		data.setLoggedOff(event.player.worldObj.getWorldTime(), event.player.worldObj.getWorldTime()); //doesn't work with Total-World-Time
 		
 
 //		  BSLog.info("LOGOUT - Curr: %d, Enr: %d, Log: %d, Bed: %d, Wake: %d", curTime, energy, logTime, bedTime, wakeTime);
