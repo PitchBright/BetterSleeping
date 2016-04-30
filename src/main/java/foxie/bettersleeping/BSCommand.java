@@ -75,6 +75,7 @@ public class BSCommand extends CommandBase
 		else if(args[0].equals("addworld"))
 		{
 			sender.getEntityWorld().getWorldInfo().incrementTotalWorldTime(number);
+			sender.getEntityWorld().setWorldTime((sender.getEntityWorld().getWorldTime() + number) % 24000);
 			
 			sender.addChatMessage(new ChatComponentText("Total world time is now " + sender.getEntityWorld().getTotalWorldTime()));
 		}
@@ -89,6 +90,7 @@ public class BSCommand extends CommandBase
 			try
 			{
 				m_worldTime.set(sender.getEntityWorld().getWorldInfo(), number);
+				sender.getEntityWorld().setWorldTime(number % 24000);
 			} catch(Exception e)
 			{
 				e.printStackTrace();
