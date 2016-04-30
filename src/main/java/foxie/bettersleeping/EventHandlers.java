@@ -86,9 +86,11 @@ public class EventHandlers {
 		data = BSSavedData.instance().getData(event.player);
 		  
 //		  long bedTime = data.getDayTicksAtLastLogOff() + (data.getSleepLevel() - 6000);
-		  long bedTime = event.player.worldObj.getWorldTime() + (data.getSleepLevel() - 6000);
-		  long wakeTime = (event.player.worldObj.getWorldTime() + ((24000 - data.getSleepLevel()) / 3) % 24000);
-		  BSLog.info("Curr: %d, Enr: %d, Log: %d, Bed: %d, Wake: %d", event.player.worldObj.getWorldTime(), data.getSleepLevel(), data.getDayTicksAtLastLogOff(), bedTime, wakeTime);
+		long bedTime = (event.player.worldObj.getWorldTime() % 24000) + (data.getSleepLevel() - 6000);
+		long wakeTime = ((event.player.worldObj.getWorldTime() % 24000) + ((24000 - data.getSleepLevel()) / 3) % 24000);
+		long logTime = (data.getDayTicksAtLastLogOff() % 24000);
+		long curTime = (event.player.worldObj.getWorldTime() % 24000);
+		  BSLog.info("Curr: %d, Enr: %d, Log: %d, Bed: %d, Wake: %d", curTime, data.getSleepLevel(), logTime, bedTime, wakeTime);
 		
 		
 		if (Config.enableSleepCounter) {
@@ -189,8 +191,8 @@ public class EventHandlers {
 		
 		long bedTime = event.player.worldObj.getWorldTime() + (data.getSleepLevel() - 6000);
 		long wakeTime = (event.player.worldObj.getWorldTime() + ((24000 - data.getSleepLevel()) / 3) % 24000);
-		long logTime = data.getDayTicksAtLastLogOff();
-		long curTime = event.player.worldObj.getWorldTime();
+		long logTime = data.getDayTicksAtLastLogOff() % 24000;
+		long curTime = event.player.worldObj.getWorldTime() % 24000;
 		
 		
 		if(curTime > logTime)
