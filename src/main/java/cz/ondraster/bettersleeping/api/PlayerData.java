@@ -8,8 +8,6 @@ public class PlayerData {
    private long sleepCounter = Integer.MAX_VALUE;
    private long ticksAtLogOff = 0;
    private long dayTicksAtLogOff = 0;
-   private long bedTime = 0;
-   private long wakeTime = 0;
 
    /**
     * INTERNAL VALUES! Only used for syncing to the client, do not touch these!
@@ -43,8 +41,6 @@ public class PlayerData {
       pillCounter = compound.getDouble("pillCounter");
       ticksAtLogOff = compound.getLong("ticksAtLogOff");
       dayTicksAtLogOff = compound.getLong("dayTicksAtLogOff");
-      bedTime = compound.getLong("bedTime");
-      wakeTime = compound.getLong("wakeTime");
    }
 
    public void writeToNBT(NBTTagCompound compound) {
@@ -53,8 +49,6 @@ public class PlayerData {
       compound.setDouble("pillCounter", pillCounter);
       compound.setLong("ticksAtLogOff", ticksAtLogOff);
       compound.setLong("dayTicksAtLogOff", dayTicksAtLogOff);
-      compound.setLong("bedTime", bedTime);
-      compound.setLong("wakeTime", wakeTime);
    }
 
    public void increaseSleeplevel() {
@@ -86,8 +80,6 @@ public class PlayerData {
       pillCounter = 0;
       ticksAtLogOff = 0;
       dayTicksAtLogOff = 0;
-      bedTime = 0;
-      wakeTime = 0;
    }
 
    public long getSleepLevel() {
@@ -112,16 +104,6 @@ public class PlayerData {
 	   return dayTicksAtLogOff;
    }
    
-   public long getBedTime()
-   {
-	   return bedTime;
-   }
-   
-   public long getWakeTime()
-   {
-	   return wakeTime;
-   }
-
    public void decreaseCaffeineLevel(double amount) {
       this.caffeineCounter -= amount;
       if (caffeineCounter < 0)
@@ -154,11 +136,9 @@ public class PlayerData {
       increaseCaffeineLevel(1);
    }
    
-   public void setLoggedOff(long allTicks, long dayTicks, long bedTicks, long wakeTicks)
+   public void setLoggedOff(long allTicks, long dayTicks)
    {
 	   ticksAtLogOff = allTicks;
 	   dayTicksAtLogOff = dayTicks;
-	   bedTime = bedTicks;
-	   wakeTime = wakeTicks;
    }
 }
