@@ -7,7 +7,9 @@ import cz.ondraster.bettersleeping.api.PlayerData;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldInfo;
 
 public class BSCommand extends CommandBase
@@ -74,10 +76,10 @@ public class BSCommand extends CommandBase
 		}
 		else if(args[0].equals("addworld"))
 		{
-			sender.getEntityWorld().getWorldInfo().incrementTotalWorldTime(number);
-			sender.getEntityWorld().setWorldTime((sender.getEntityWorld().getWorldTime() + number) % 24000);
+			getWorld().getWorldInfo().incrementTotalWorldTime(number);
+			getWorld().setWorldTime((getWorld().getWorldTime() + number) % 24000);
 			
-			sender.addChatMessage(new ChatComponentText("Total world time is now " + sender.getEntityWorld().getTotalWorldTime()));
+			sender.addChatMessage(new ChatComponentText("Total world time is now " + getWorld().getTotalWorldTime()));
 		}
 		else if(args[0].equals("setworld"))
 		{
@@ -89,17 +91,22 @@ public class BSCommand extends CommandBase
 			
 			try
 			{
-				m_worldTime.set(sender.getEntityWorld().getWorldInfo(), number);
-				sender.getEntityWorld().setWorldTime(number % 24000);
+				m_worldTime.set(getWorld(), number);
+				getWorld().setWorldTime(number % 24000);
 			} catch(Exception e)
 			{
 				e.printStackTrace();
 			}
 			
-			sender.addChatMessage(new ChatComponentText("Total world time is now " + sender.getEntityWorld().getTotalWorldTime()));
+			sender.addChatMessage(new ChatComponentText("Total world time is now " + getWorld().getTotalWorldTime()));
 		}
 		
 		sender.addChatMessage(new ChatComponentText("Sleep level is now " + data.getSleepLevel()));
+	}
+	
+	private World getWorld()
+	{
+		return MinecraftServer.getServer().getEntityWorld();
 	}
 
 }
