@@ -221,7 +221,7 @@ public class EventHandlers {
 		
 		float heartsToGive = 0;
 		
-		long completeCycles = (missedTime / 24) - 1;
+		long completeCycles = (missedTime / 24000) - 1;
 		
 		if(completeCycles > 0)
 		{
