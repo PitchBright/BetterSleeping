@@ -1,0 +1,75 @@
+[00:29:49] [Server thread/INFO]: Starting minecraft server version 1.7.10
+[00:29:52] [Server thread/INFO]: Loading properties
+[00:29:52] [Server thread/INFO]: Default game type: SURVIVAL
+[00:29:52] [Server thread/INFO]: Generating keypair
+[00:29:53] [Server thread/INFO]: Starting Minecraft server on *:25565
+[00:29:53] [Server thread/WARN]: Failed to load user banlist: 
+java.io.FileNotFoundException: banned-players.json (Das System kann die angegebene Datei nicht finden)
+	at java.io.FileInputStream.open0(Native Method) ~[?:1.8.0_66]
+	at java.io.FileInputStream.open(FileInputStream.java:195) ~[?:1.8.0_66]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[?:1.8.0_66]
+	at com.google.common.io.Files.newReader(Files.java:86) ~[guava-17.0.jar:?]
+	at net.minecraft.server.management.UserList.func_152679_g(UserList.java:195) ~[UserList.class:?]
+	at net.minecraft.server.dedicated.DedicatedPlayerList.func_152620_y(DedicatedPlayerList.java:124) [DedicatedPlayerList.class:?]
+	at net.minecraft.server.dedicated.DedicatedPlayerList.<init>(DedicatedPlayerList.java:31) [DedicatedPlayerList.class:?]
+	at net.minecraft.server.dedicated.DedicatedServer.startServer(DedicatedServer.java:214) [DedicatedServer.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:445) [MinecraftServer.class:?]
+	at net.minecraft.server.MinecraftServer$2.run(MinecraftServer.java:752) [MinecraftServer$2.class:?]
+[00:29:53] [Server thread/WARN]: Failed to load ip banlist: 
+java.io.FileNotFoundException: banned-ips.json (Das System kann die angegebene Datei nicht finden)
+	at java.io.FileInputStream.open0(Native Method) ~[?:1.8.0_66]
+	at java.io.FileInputStream.open(FileInputStream.java:195) ~[?:1.8.0_66]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[?:1.8.0_66]
+	at com.google.common.io.Files.newReader(Files.java:86) ~[guava-17.0.jar:?]
+	at net.minecraft.server.management.UserList.func_152679_g(UserList.java:195) ~[UserList.class:?]
+	at net.minecraft.server.dedicated.DedicatedPlayerList.func_152619_x(DedicatedPlayerList.java:112) [DedicatedPlayerList.class:?]
+	at net.minecraft.server.dedicated.DedicatedPlayerList.<init>(DedicatedPlayerList.java:33) [DedicatedPlayerList.class:?]
+	at net.minecraft.server.dedicated.DedicatedServer.startServer(DedicatedServer.java:214) [DedicatedServer.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:445) [MinecraftServer.class:?]
+	at net.minecraft.server.MinecraftServer$2.run(MinecraftServer.java:752) [MinecraftServer$2.class:?]
+[00:29:53] [Server thread/WARN]: Failed to load operators list: 
+java.io.FileNotFoundException: ops.json (Das System kann die angegebene Datei nicht finden)
+	at java.io.FileInputStream.open0(Native Method) ~[?:1.8.0_66]
+	at java.io.FileInputStream.open(FileInputStream.java:195) ~[?:1.8.0_66]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[?:1.8.0_66]
+	at com.google.common.io.Files.newReader(Files.java:86) ~[guava-17.0.jar:?]
+	at net.minecraft.server.management.UserList.func_152679_g(UserList.java:195) ~[UserList.class:?]
+	at net.minecraft.server.dedicated.DedicatedPlayerList.loadOpsList(DedicatedPlayerList.java:136) [DedicatedPlayerList.class:?]
+	at net.minecraft.server.dedicated.DedicatedPlayerList.<init>(DedicatedPlayerList.java:35) [DedicatedPlayerList.class:?]
+	at net.minecraft.server.dedicated.DedicatedServer.startServer(DedicatedServer.java:214) [DedicatedServer.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:445) [MinecraftServer.class:?]
+	at net.minecraft.server.MinecraftServer$2.run(MinecraftServer.java:752) [MinecraftServer$2.class:?]
+[00:29:53] [Server thread/WARN]: Failed to load white-list: 
+java.io.FileNotFoundException: whitelist.json (Das System kann die angegebene Datei nicht finden)
+	at java.io.FileInputStream.open0(Native Method) ~[?:1.8.0_66]
+	at java.io.FileInputStream.open(FileInputStream.java:195) ~[?:1.8.0_66]
+	at java.io.FileInputStream.<init>(FileInputStream.java:138) ~[?:1.8.0_66]
+	at com.google.common.io.Files.newReader(Files.java:86) ~[guava-17.0.jar:?]
+	at net.minecraft.server.management.UserList.func_152679_g(UserList.java:195) ~[UserList.class:?]
+	at net.minecraft.server.dedicated.DedicatedPlayerList.readWhiteList(DedicatedPlayerList.java:160) [DedicatedPlayerList.class:?]
+	at net.minecraft.server.dedicated.DedicatedPlayerList.<init>(DedicatedPlayerList.java:36) [DedicatedPlayerList.class:?]
+	at net.minecraft.server.dedicated.DedicatedServer.startServer(DedicatedServer.java:214) [DedicatedServer.class:?]
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:445) [MinecraftServer.class:?]
+	at net.minecraft.server.MinecraftServer$2.run(MinecraftServer.java:752) [MinecraftServer$2.class:?]
+[00:29:53] [Server thread/INFO]: Preparing level "world"
+[00:29:53] [Server thread/WARN]: Unable to find spawn biome
+[00:29:54] [Server thread/INFO]: Preparing start region for level 0
+[00:29:55] [Server thread/INFO]: Preparing spawn area: 6%
+[00:29:56] [Server thread/INFO]: Preparing spawn area: 19%
+[00:29:57] [Server thread/INFO]: Preparing spawn area: 36%
+[00:29:58] [Server thread/INFO]: Preparing spawn area: 52%
+[00:29:59] [Server thread/INFO]: Preparing spawn area: 66%
+[00:30:00] [Server thread/INFO]: Preparing spawn area: 83%
+[00:30:01] [Server thread/INFO]: Preparing spawn area: 97%
+[00:30:01] [Server thread/INFO]: Done (7,866s)! For help, type "help" or "?"
+[00:30:51] [Server thread/INFO]: com.mojang.authlib.GameProfile@259a8b92[id=<null>,name=Player935,properties={},legacy=false] (/127.0.0.1:53913) lost connection: Disconnected
+FileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:EnviroMine, FMLFileResourcePack:Better Sleeping
+[00:30:19] [Sound Library Loader/INFO]: Sound engine started
+[00:30:20] [Client thread/INFO]: Created: 16x16 textures/blocks-atlas
+[00:30:20] [Client thread/INFO]: Created: 16x16 textures/items-atlas
+[00:30:20] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:EnviroMine, FMLFileResourcePack:Better Sleeping
+[00:30:21] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[00:30:21] [Client thread/INFO]: Created: 256x256 textures/items-atlas
+[00:30:22] [Sound Library Loader/INFO]: Sound engine started
+[00:30:51] [Client thread/INFO]: Connecting to localhost, 25565
+[00:30:58] [Client thread/INFO]: Stopping!

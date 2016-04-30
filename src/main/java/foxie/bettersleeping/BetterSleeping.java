@@ -10,6 +10,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartedEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.relauncher.Side;
 import foxie.bettersleeping.compat.CompatibilityMorpheus;
 import foxie.bettersleeping.compat.CompatibilityOpenBlocks;
@@ -57,14 +58,19 @@ public class BetterSleeping {
       }
    }
 
-
+   @EventHandler
+   public void serverLoad(FMLServerStartingEvent event)
+   {
+	   event.registerServerCommand(new BSCommand());
+   }
+   
    @EventHandler
    public void onServerStarted(FMLServerStartedEvent event) {
       if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
          return;
-
+      
       World world = MinecraftServer.getServer().worldServers[0];
-
+      
       playerData = (BSSavedData) world.loadItemData(BSSavedData.class, BetterSleeping.MODID);
       if (playerData == null) {
          playerData = new BSSavedData();
