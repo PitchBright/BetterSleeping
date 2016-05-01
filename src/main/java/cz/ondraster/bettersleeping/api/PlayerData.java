@@ -8,6 +8,7 @@ public class PlayerData {
    private long sleepCounter = Integer.MAX_VALUE;
    private long ticksAtLogOff = 0;
    private long dayTicksAtLogOff = 0;
+   private long energyAtBedTime = 0;
 
    /**
     * INTERNAL VALUES! Only used for syncing to the client, do not touch these!
@@ -41,6 +42,7 @@ public class PlayerData {
       pillCounter = compound.getDouble("pillCounter");
       ticksAtLogOff = compound.getLong("ticksAtLogOff");
       dayTicksAtLogOff = compound.getLong("dayTicksAtLogOff");
+      energyAtBedTime = compound.getLong("energyAtBedTime");
    }
 
    public void writeToNBT(NBTTagCompound compound) {
@@ -49,6 +51,7 @@ public class PlayerData {
       compound.setDouble("pillCounter", pillCounter);
       compound.setLong("ticksAtLogOff", ticksAtLogOff);
       compound.setLong("dayTicksAtLogOff", dayTicksAtLogOff);
+      compound.setLong("energyAtBedTime", energyAtBedTime);
    }
 
    public void increaseSleeplevel() {
@@ -80,6 +83,7 @@ public class PlayerData {
       pillCounter = 0;
       ticksAtLogOff = 0;
       dayTicksAtLogOff = 0;
+      energyAtBedTime = 0;
    }
 
    public long getSleepLevel() {
@@ -102,6 +106,11 @@ public class PlayerData {
    public long getDayTicksAtLastLogOff()
    {
 	   return dayTicksAtLogOff;
+   }
+   
+   public long getEnergyAtBedTime()
+   {
+	   return energyAtBedTime;
    }
    
    public void decreaseCaffeineLevel(double amount) {
@@ -141,4 +150,10 @@ public class PlayerData {
 	   ticksAtLogOff = allTicks;
 	   dayTicksAtLogOff = dayTicks;
    }
+   
+   public void setBedTimeEnergy(long bedTimeEnergy)
+   {
+	   energyAtBedTime = bedTimeEnergy;
+   }
+   
 }

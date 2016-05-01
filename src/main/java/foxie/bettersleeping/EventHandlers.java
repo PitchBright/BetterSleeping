@@ -110,8 +110,21 @@ public class EventHandlers
 
 			if (event.player.isPlayerSleeping() && Config.giveSleepCounterOnSleep > 0)
 			{
+
 				if (!(Config.capEnergyBar && data.getSleepLevel() >= Config.maximumSleepCounter))
+				{
 					data.increaseSleepLevel(Config.giveSleepCounterOnSleep);
+					if (data.getSleepLevel() >= 24000)
+					{
+						event.player.wakeUpPlayer(false, false, true);
+					}
+					if (data.getSleepLevel() - data.getEnergyAtBedTime() == 18000)
+					{
+						event.player.heal(1);
+					}
+//					System.out.println("PLAYER WAS SLEEPING " + data.getSleepLevel() + " BEDTIME: " + data.getEnergyAtBedTime());
+
+				}
 			}
 
 			// send update about tiredness to the client
@@ -172,8 +185,12 @@ public class EventHandlers
 
 		// check for amount of people sleeping in this dimension
 		AlternateSleep.trySleepingWorld(event.entityPlayer.worldObj);
-		
-		
+
+		PlayerData data = BSSavedData.instance().getData(event.entityPlayer);
+
+		data.setBedTimeEnergy(data.getSleepLevel());
+		// long bedTime = event.entityPlayer.worldObj.getTotalWorldTime();
+
 	}
 
 	@SubscribeEvent
@@ -190,8 +207,11 @@ public class EventHandlers
 		long missedTime = event.player.worldObj.getTotalWorldTime() - data.getTicksSinceLastLogOff();
 		long missedTime24 = missedTime % 24000;
 
-//		System.out.println("WorldTime: " + event.player.worldObj.getWorldTime() % 24000 + " DayTicksAtLastLogOff: "
-//				+ data.getDayTicksAtLastLogOff() + " MissedTime: " + missedTime + " MissedTime24: " + missedTime24);
+		// System.out.println("WorldTime: " +
+		// event.player.worldObj.getWorldTime() % 24000 +
+		// " DayTicksAtLastLogOff: "
+		// + data.getDayTicksAtLastLogOff() + " MissedTime: " + missedTime +
+		// " MissedTime24: " + missedTime24);
 		long energy = data.getSleepLevel();
 
 		data.decreaseCaffeineLevel(missedTime * Config.caffeinePerTick);
@@ -201,33 +221,39 @@ public class EventHandlers
 		long partialSleptCycles = 0;
 		long completeCycles = (missedTime / 24000);
 
-//		System.out.println("Energy: " + energy + " MissedTime: " + missedTime24);
+		// System.out.println("Energy: " + energy + " MissedTime: " +
+		// missedTime24);
 		if ((energy - missedTime24) > 6000)
 		{
 			data.setSleepLevel((long) (energy - missedTime24));
-//			System.out.println("Scenario 1.1 Player joins during standard energy reduction");
+			// System.out.println("Scenario 1.1 Player joins during standard energy reduction");
 		}
 		else
 		{
 			if ((energy - missedTime24) > 0)
 			{
 				data.setSleepLevel((long) (6000 + ((6000 - (energy - missedTime24)) * 3)));
-//				System.out.println("Scenario 2.1 Player joins during BedTime:" + (6000 - (energy - missedTime24)));
+				// System.out.println("Scenario 2.1 Player joins during BedTime:"
+				// + (6000 - (energy - missedTime24)));
 			}
 			else
 			{
 				data.setSleepLevel((long) (24000 + (energy - missedTime24)));
 				partialSleptCycles++;
-//				System.out.println("Scenario 2.2 Player joins past WakeTime:" + (0 - (energy - missedTime24)));
+				// System.out.println("Scenario 2.2 Player joins past WakeTime:"
+				// + (0 - (energy - missedTime24)));
 			}
 		}
 
 		heartsToGive += completeCycles;
 		heartsToGive += partialSleptCycles;
 
-//		System.out.println("Hearts: " + heartsToGive + " Comp: " + completeCycles + " Part: " + partialSleptCycles
-//				+ " TotalWorldTime: " + event.player.worldObj.getTotalWorldTime() + " TicksSinceLog: "
-//				+ data.getTicksSinceLastLogOff() + " Missed: " + missedTime + " Miss24: " + missedTime24);
+		// System.out.println("Hearts: " + heartsToGive + " Comp: " +
+		// completeCycles + " Part: " + partialSleptCycles
+		// + " TotalWorldTime: " + event.player.worldObj.getTotalWorldTime() +
+		// " TicksSinceLog: "
+		// + data.getTicksSinceLastLogOff() + " Missed: " + missedTime +
+		// " Miss24: " + missedTime24);
 
 		if (heartsToGive > 0)
 		{
@@ -252,8 +278,8 @@ public class EventHandlers
 
 		data.setLoggedOff(event.player.worldObj.getTotalWorldTime(), event.player.worldObj.getWorldTime()); // CA
 
-
-		// BSLog.info("LOGOUT - Curr: %d, Enr: %d, Log: %d, Bed: %d, Wake: %d", curTime, energy, logTime, bedTime, wakeTime);
+		// BSLog.info("LOGOUT - Curr: %d, Enr: %d, Log: %d, Bed: %d, Wake: %d",
+		// curTime, energy, logTime, bedTime, wakeTime);
 
 		if (Config.percentPeopleToSleep > 1)
 			return;
@@ -287,10 +313,16 @@ public class EventHandlers
 	@SubscribeEvent
 	public void onPlayerWakeUpEvent(PlayerWakeUpEvent event)
 	{
+
 		if (event.entityPlayer.worldObj.isRemote)
 			return;
 
 		Random rand = event.entityPlayer.worldObj.rand;
+
+		// PlayerData data = BSSavedData.instance().getData(event.entityPlayer);
+		// long bedTimeEnergy = data.getEnergyAtBedTime();
+		// long wakeTimeEnergy = data.getSleepLevel();
+		// long sleptTimeEnergy = wakeTimeEnergy - bedTimeEnergy;
 
 		if (rand.nextFloat() < Config.chanceToGetBadNight)
 		{
@@ -308,6 +340,16 @@ public class EventHandlers
 				event.entityPlayer.addPotionEffect(new PotionEffect(Potion.regeneration.getId(), 60,
 						rand.nextInt(2) + 1));
 		}
+
+		// if (sleptTimeEnergy > 200)
+		// {
+		// event.entityPlayer.heal(1);
+		// }
+		//
+		// System.out.println("BEDTIME: " + bedTimeEnergy + " WAKETIME: " +
+		// wakeTimeEnergy + " SLEPT: " + sleptTimeEnergy);
+		//
+		// BSSavedData.instance().markDirty(); //PITCH ADDED
 	}
 
 	@SubscribeEvent

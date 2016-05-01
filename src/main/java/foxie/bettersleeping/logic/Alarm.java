@@ -117,6 +117,13 @@ public class Alarm {
             if (Config.enableSleepCounter) {
                PlayerData property = BSSavedData.instance().getData(player);
                property.increaseSleepLevel((long) (reallySleptTime * Config.sleepPerSleptTick));
+
+       		if ((reallySleptTime * Config.sleepPerSleptTick) > 18000)
+       		{
+       			player.heal(1);
+       		}
+//				 System.out.println("---ENERGY ADDED: " + reallySleptTime * Config.sleepPerSleptTick);
+              
                property.decreaseCaffeineLevel((reallySleptTime * Config.caffeinePerTick));
 
                if (property.getSleepLevel() > Config.maximumSleepCounter)
