@@ -136,7 +136,7 @@ public class Alarm {
             }
          }
 
-         player.addChatMessage(new ChatComponentTranslation("msg.wakeUp", time.toString()));
+//         player.addChatMessage(new ChatComponentTranslation("msg.wakeUp", time.toString()));
       }
 
       if (Config.enableSleepTicks && world instanceof WorldServer) {
